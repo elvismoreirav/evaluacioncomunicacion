@@ -1,0 +1,8 @@
+<?php
+
+define('EVAL180_LOCAL_CONFIG', true);
+
+define('OAUTH_CLIENT_ID', 'coloque_aqui_su_google_oauth_client_id');
+define('OAUTH_CLIENT_SECRET', 'coloque_aqui_su_google_oauth_client_secret');
+define('OAUTH_REFRESH_TOKEN', 'coloque_aqui_su_google_oauth_refresh_token');
+
