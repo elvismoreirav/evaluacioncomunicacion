@@ -276,6 +276,7 @@ $stepCount = count($steps);
 $wizardStep = min($wizardStep, max(0, $stepCount - 1));
 $completionPercent = $totalQuestions > 0 ? (int) round(($answeredQuestions / $totalQuestions) * 100) : 0;
 $stepProgressPercent = $stepCount > 1 ? (int) round(($wizardStep / ($stepCount - 1)) * 100) : 100;
+$publicNavigationMode = $isInternalAccess ? 'employee' : 'none';
 
 include __DIR__ . '/../templates/public_header.php';
 ?>

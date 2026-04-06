@@ -2,6 +2,7 @@
 $pageTitle = $pageTitle ?? APP_NAME;
 $currentEmployee = $currentEmployee ?? Auth::getEmployeeUser();
 $flash = pull_flash();
+$publicNavigationMode = $publicNavigationMode ?? ($currentEmployee ? 'employee' : 'brand');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -38,20 +39,20 @@ $flash = pull_flash();
                     <p class="truncate text-xs text-gray-500">Diagnostico de comunicacion institucional</p>
                 </div>
             </div>
+            <?php if ($publicNavigationMode !== 'none'): ?>
             <div class="flex items-center gap-3">
-                <?php if ($currentEmployee): ?>
+                <?php if ($publicNavigationMode === 'employee' && $currentEmployee): ?>
                 <div class="hidden text-right sm:block">
                     <p class="text-sm font-bold text-gray-800"><?= htmlspecialchars($currentEmployee['name'] ?? '') ?></p>
                     <p class="text-xs text-gray-500"><?= htmlspecialchars($currentEmployee['cedula'] ?? '') ?></p>
                 </div>
                 <a href="dashboard.php" class="rounded-lg px-4 py-2 text-sm font-bold text-primary transition hover:bg-primary/5">Panel</a>
                 <a href="logout.php" class="rounded-lg px-4 py-2 text-sm font-bold text-red-600 transition hover:bg-red-50">Salir</a>
-                <?php else: ?>
+                <?php elseif ($publicNavigationMode === 'brand'): ?>
                 <a href="index.php" class="rounded-lg px-4 py-2 text-sm font-bold text-primary transition hover:bg-primary/5">Inicio</a>
-                <a href="interno.php" class="rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition hover:bg-primary/5 hover:text-primary">Personal interno</a>
-                <a href="../admin/login.php" class="rounded-lg px-4 py-2 text-sm font-bold text-gray-600 transition hover:bg-primary/5 hover:text-primary">Panel admin</a>
                 <?php endif; ?>
             </div>
+            <?php endif; ?>
         </div>
     </header>
     <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
