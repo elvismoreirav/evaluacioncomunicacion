@@ -56,7 +56,15 @@ $flash = pull_flash();
     </header>
     <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <?php if ($flash): ?>
-        <div class="mb-6 rounded-2xl border px-5 py-4 <?= $flash['type'] === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-red-200 bg-red-50 text-red-700' ?>">
-            <?= htmlspecialchars($flash['message']) ?>
+        <?php
+        $flashIsSuccess = ($flash['type'] ?? '') === 'success';
+        $flashTitle = $flashIsSuccess ? 'Operacion completada' : 'Revise la informacion';
+        $flashClasses = $flashIsSuccess
+            ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+            : 'border-red-200 bg-red-50 text-red-800';
+        ?>
+        <div class="mb-6 rounded-[2rem] border px-6 py-5 <?= $flashClasses ?>">
+            <p class="text-xs font-extrabold uppercase tracking-[0.18em]"><?= $flashTitle ?></p>
+            <p class="mt-2 text-sm leading-6"><?= htmlspecialchars($flash['message']) ?></p>
         </div>
         <?php endif; ?>

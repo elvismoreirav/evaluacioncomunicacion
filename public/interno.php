@@ -17,7 +17,7 @@ if (request_method_is('POST')) {
         redirect('dashboard.php');
     }
 
-    $error = 'No fue posible iniciar sesion. Use su cedula como usuario y contrasena.';
+    $error = 'No pudimos iniciar sesion. Verifique su cedula y use ese mismo valor como contrasena.';
 }
 ?>
 <!DOCTYPE html>
@@ -79,8 +79,9 @@ if (request_method_is('POST')) {
                 </div>
                 <div class="p-8">
                     <?php if ($error): ?>
-                    <div class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                        <?= htmlspecialchars($error) ?>
+                    <div class="mb-6 rounded-[2rem] border border-red-200 bg-red-50 px-5 py-4 text-red-800">
+                        <p class="text-xs font-extrabold uppercase tracking-[0.18em]">Acceso no completado</p>
+                        <p class="mt-2 text-sm leading-6"><?= htmlspecialchars($error) ?></p>
                     </div>
                     <?php endif; ?>
 

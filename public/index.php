@@ -112,14 +112,25 @@ foreach ($instrumentCodes as $instrumentCode) {
             </section>
 
             <?php if ($flash): ?>
-            <div class="mt-8 rounded-2xl border px-5 py-4 <?= $flash['type'] === 'success' ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : 'border-red-200 bg-red-50 text-red-700' ?>">
-                <?= htmlspecialchars($flash['message']) ?>
+            <?php
+            $flashIsSuccess = ($flash['type'] ?? '') === 'success';
+            $flashTitle = $flashIsSuccess ? 'Operacion completada' : 'Revise la informacion';
+            $flashClasses = $flashIsSuccess
+                ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
+                : 'border-red-200 bg-red-50 text-red-800';
+            ?>
+            <div class="mt-8 rounded-[2rem] border px-6 py-5 <?= $flashClasses ?>">
+                <p class="text-xs font-extrabold uppercase tracking-[0.18em]"><?= $flashTitle ?></p>
+                <p class="mt-2 text-sm leading-6"><?= htmlspecialchars($flash['message']) ?></p>
             </div>
             <?php endif; ?>
 
             <?php if (!$windowOpen): ?>
-            <div class="mt-8 rounded-[2rem] border border-amber-200 bg-amber-50 px-6 py-5 text-amber-800">
-                El diagnostico no se encuentra habilitado para envios en este momento. El acceso queda visible, pero la captura depende de la ventana configurada en el periodo.
+            <div class="mt-8 rounded-[2rem] border border-amber-200 bg-amber-50 px-6 py-5 text-amber-900">
+                <p class="text-xs font-extrabold uppercase tracking-[0.18em]">Captura no disponible</p>
+                <p class="mt-2 text-sm leading-6">
+                    El diagnostico no se encuentra habilitado para envios en este momento. Los accesos permanecen visibles, pero la captura depende de la ventana configurada en el periodo activo.
+                </p>
             </div>
             <?php endif; ?>
 

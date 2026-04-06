@@ -1231,7 +1231,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if ($text === null) {
-                    throw new InvalidArgumentException('Existen preguntas obligatorias sin responder.');
+                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
                 }
                 $base['valor_texto'] = $text;
                 return $base;
@@ -1243,7 +1243,7 @@ class CommunicationEvaluation
                 }
                 $option = $this->getScaleOption($optionId);
                 if (!$option) {
-                    throw new InvalidArgumentException('Debe seleccionar una opcion valida de escala.');
+                    throw new InvalidArgumentException('Seleccione una opcion valida en la escala antes de continuar.');
                 }
                 $base['serial_eco'] = $optionId;
                 $base['valor_numero'] = $option['valor_opc'] !== null ? (float) $option['valor_opc'] : null;
@@ -1259,7 +1259,7 @@ class CommunicationEvaluation
                 if (!empty($question['escala'])) {
                     $option = $this->getScaleOption($selectedId);
                     if (!$option) {
-                        throw new InvalidArgumentException('Debe seleccionar una opcion valida.');
+                        throw new InvalidArgumentException('Seleccione una opcion valida antes de continuar.');
                     }
                     $base['serial_eco'] = $selectedId;
                     $base['valor_numero'] = $option['valor_opc'] !== null ? (float) $option['valor_opc'] : null;
@@ -1269,7 +1269,7 @@ class CommunicationEvaluation
 
                 $option = $this->getQuestionOption($selectedId);
                 if (!$option) {
-                    throw new InvalidArgumentException('Debe seleccionar una opcion valida.');
+                    throw new InvalidArgumentException('Seleccione una opcion valida antes de continuar.');
                 }
                 $base['serial_pop'] = $selectedId;
                 $base['valor_texto'] = $option['etiqueta_opc'];
@@ -1281,7 +1281,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if (empty($selected)) {
-                    throw new InvalidArgumentException('Existen preguntas obligatorias sin responder.');
+                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
                 }
                 $labels = [];
                 foreach ($selected as $optionId) {
@@ -1300,7 +1300,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if (!in_array($boolValue, ['SI', 'NO'], true)) {
-                    throw new InvalidArgumentException('Respuesta booleana invalida.');
+                    throw new InvalidArgumentException('Seleccione Si o No para continuar.');
                 }
                 $base['valor_booleano'] = $boolValue;
                 $base['valor_texto'] = $boolValue;
@@ -1309,12 +1309,12 @@ class CommunicationEvaluation
             case 'NUMERO':
                 if ($value === null || $value === '') {
                     if ($isRequired) {
-                        throw new InvalidArgumentException('Existen preguntas obligatorias sin responder.');
+                        throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
                     }
                     return null;
                 }
                 if (!is_numeric((string) $value)) {
-                    throw new InvalidArgumentException('Se esperaba un valor numerico.');
+                    throw new InvalidArgumentException('Ingrese un valor numerico valido.');
                 }
                 $base['valor_numero'] = (float) $value;
                 $base['valor_texto'] = (string) $value;
@@ -1326,7 +1326,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if ($date === null) {
-                    throw new InvalidArgumentException('Existen preguntas obligatorias sin responder.');
+                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
                 }
                 $base['valor_fecha'] = $date;
                 $base['valor_texto'] = $date;
