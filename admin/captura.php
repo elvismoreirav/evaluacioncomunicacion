@@ -24,7 +24,7 @@ $context = null;
 
 if (request_method_is('POST')) {
     if (!verify_csrf($_POST['csrf_token'] ?? null)) {
-        throw new RuntimeException('Token CSRF invalido.');
+        throw new RuntimeException('Token CSRF inválido.');
     }
 
     $selectedInstrumentId = (int) ($_POST['instrumento'] ?? 0);
@@ -69,8 +69,8 @@ include __DIR__ . '/../templates/admin_header.php';
 <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
     <div>
         <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Captura administrativa</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Levantamiento del diagnostico de comunicacion</h1>
-        <p class="mt-3 text-slate-600">Seleccione instrumento y participante para registrar entrevistas, auditorias o matrices institucionales.</p>
+        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Levantamiento del diagnóstico de comunicación</h1>
+        <p class="mt-3 text-slate-600">Seleccione instrumento y participante para registrar entrevistas, auditorías o matrices institucionales.</p>
     </div>
     <a href="resultados.php?periodo=<?= $selectedPeriodId ?>" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-5 py-3 text-sm font-bold text-slate-700 hover:bg-slate-100 transition">
         Ver reportes
@@ -168,7 +168,7 @@ $extraRows = $context['filas_extra'];
         <div class="bg-primary px-6 py-5 text-white">
             <div class="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                    <p class="text-xs uppercase tracking-[0.24em] font-bold text-white/70">Seccion <?= $index + 1 ?></p>
+                    <p class="text-xs uppercase tracking-[0.24em] font-bold text-white/70">Sección <?= $index + 1 ?></p>
                     <h2 class="mt-1 text-2xl font-extrabold"><?= htmlspecialchars($section['titulo_sec']) ?></h2>
                 </div>
                 <?php if (!empty($section['procesos'])): ?>
@@ -257,7 +257,7 @@ $extraRows = $context['filas_extra'];
         <div class="flex items-center justify-between gap-4 mb-4">
             <div>
                 <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Matriz</p>
-                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Mapeo y caracterizacion de publicos</h2>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Mapeo y caracterización de públicos</h2>
             </div>
             <button type="button" data-add-row="mapeo" class="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100 transition">Agregar fila</button>
         </div>
@@ -270,29 +270,29 @@ $extraRows = $context['filas_extra'];
                         <option value="<?= $type ?>" <?= ($row['tipo_publico'] ?? 'EXTERNO') === $type ? 'selected' : '' ?>><?= htmlspecialchars($evaluation->participantTypeLabel($type)) ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <input type="text" name="extra[mapeo][<?= $index ?>][nombre_publico]" value="<?= htmlspecialchars($row['nombre_publico'] ?? '') ?>" placeholder="Nombre del publico" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <input type="text" name="extra[mapeo][<?= $index ?>][categoria_grupo]" value="<?= htmlspecialchars($row['categoria_grupo'] ?? '') ?>" placeholder="Categoria o grupo" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <input type="text" name="extra[mapeo][<?= $index ?>][nombre_publico]" value="<?= htmlspecialchars($row['nombre_publico'] ?? '') ?>" placeholder="Nombre del público" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <input type="text" name="extra[mapeo][<?= $index ?>][categoria_grupo]" value="<?= htmlspecialchars($row['categoria_grupo'] ?? '') ?>" placeholder="Categoría o grupo" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                     <select name="extra[mapeo][<?= $index ?>][situacion_publico]" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                        <option value="">Situacion</option>
+                        <option value="">Situación</option>
                         <?php foreach (['ALIADO', 'INDECISO', 'A_CONVENCER', 'OTRO'] as $status): ?>
                         <option value="<?= $status ?>" <?= ($row['situacion_publico'] ?? '') === $status ? 'selected' : '' ?>><?= htmlspecialchars($status) ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <input type="text" name="extra[mapeo][<?= $index ?>][fuente_informacion]" value="<?= htmlspecialchars($row['fuente_informacion'] ?? '') ?>" placeholder="Fuente de informacion" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <input type="text" name="extra[mapeo][<?= $index ?>][fuente_informacion]" value="<?= htmlspecialchars($row['fuente_informacion'] ?? '') ?>" placeholder="Fuente de información" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                     <select name="extra[mapeo][<?= $index ?>][influencia_directa]" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                         <option value="NO" <?= ($row['influencia_directa'] ?? 'NO') === 'NO' ? 'selected' : '' ?>>Sin influencia directa</option>
                         <option value="SI" <?= ($row['influencia_directa'] ?? '') === 'SI' ? 'selected' : '' ?>>Con influencia directa</option>
                     </select>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-3 mt-3">
-                    <textarea name="extra[mapeo][<?= $index ?>][estrategia_influencia]" rows="2" placeholder="Como se puede influir" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['estrategia_influencia'] ?? '') ?></textarea>
-                    <textarea name="extra[mapeo][<?= $index ?>][necesidades_comunicacion]" rows="2" placeholder="Necesidades de comunicacion" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['necesidades_comunicacion'] ?? '') ?></textarea>
+                    <textarea name="extra[mapeo][<?= $index ?>][estrategia_influencia]" rows="2" placeholder="Cómo se puede influir" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['estrategia_influencia'] ?? '') ?></textarea>
+                    <textarea name="extra[mapeo][<?= $index ?>][necesidades_comunicacion]" rows="2" placeholder="Necesidades de comunicación" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['necesidades_comunicacion'] ?? '') ?></textarea>
                     <textarea name="extra[mapeo][<?= $index ?>][intereses_valores_creencias]" rows="2" placeholder="Intereses, valores y creencias" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['intereses_valores_creencias'] ?? '') ?></textarea>
                     <textarea name="extra[mapeo][<?= $index ?>][medios_preferenciales]" rows="2" placeholder="Medios preferenciales" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['medios_preferenciales'] ?? '') ?></textarea>
                     <textarea name="extra[mapeo][<?= $index ?>][cambio_buscado]" rows="2" placeholder="Cambio buscado" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['cambio_buscado'] ?? '') ?></textarea>
                     <textarea name="extra[mapeo][<?= $index ?>][tono_lenguaje]" rows="2" placeholder="Tono y lenguaje" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['tono_lenguaje'] ?? '') ?></textarea>
-                    <textarea name="extra[mapeo][<?= $index ?>][respuesta_necesidades]" rows="2" placeholder="Como se responde a necesidades y preferencias" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['respuesta_necesidades'] ?? '') ?></textarea>
-                    <textarea name="extra[mapeo][<?= $index ?>][mapa_empatia]" rows="2" placeholder="Mapa de empatia o buyer persona" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['mapa_empatia'] ?? '') ?></textarea>
+                    <textarea name="extra[mapeo][<?= $index ?>][respuesta_necesidades]" rows="2" placeholder="Cómo se responde a necesidades y preferencias" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['respuesta_necesidades'] ?? '') ?></textarea>
+                    <textarea name="extra[mapeo][<?= $index ?>][mapa_empatia]" rows="2" placeholder="Mapa de empatía o buyer persona" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['mapa_empatia'] ?? '') ?></textarea>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -305,7 +305,7 @@ $extraRows = $context['filas_extra'];
         <div class="flex items-center justify-between gap-4 mb-4">
             <div>
                 <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Inventario</p>
-                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Herramientas y espacios de comunicacion</h2>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Herramientas y espacios de comunicación</h2>
             </div>
             <button type="button" data-add-row="herramientas" class="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100 transition">Agregar fila</button>
         </div>
@@ -316,8 +316,8 @@ $extraRows = $context['filas_extra'];
                     <input type="text" name="extra[herramientas][<?= $index ?>][plataforma_herramienta]" value="<?= htmlspecialchars($row['plataforma_herramienta'] ?? '') ?>" placeholder="Plataforma o herramienta" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                     <input type="text" name="extra[herramientas][<?= $index ?>][frecuencia_uso]" value="<?= htmlspecialchars($row['frecuencia_uso'] ?? '') ?>" placeholder="Frecuencia de uso" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                     <input type="text" name="extra[herramientas][<?= $index ?>][personas_alcanzadas]" value="<?= htmlspecialchars($row['personas_alcanzadas'] ?? '') ?>" placeholder="Personas alcanzadas" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <input type="text" name="extra[herramientas][<?= $index ?>][area_responsable]" value="<?= htmlspecialchars($row['area_responsable'] ?? '') ?>" placeholder="Area responsable" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <textarea name="extra[herramientas][<?= $index ?>][proposito_herramienta]" rows="2" placeholder="Proposito" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['proposito_herramienta'] ?? '') ?></textarea>
+                    <input type="text" name="extra[herramientas][<?= $index ?>][area_responsable]" value="<?= htmlspecialchars($row['area_responsable'] ?? '') ?>" placeholder="Área responsable" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <textarea name="extra[herramientas][<?= $index ?>][proposito_herramienta]" rows="2" placeholder="Propósito" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['proposito_herramienta'] ?? '') ?></textarea>
                     <textarea name="extra[herramientas][<?= $index ?>][observaciones_herramienta]" rows="2" placeholder="Observaciones" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['observaciones_herramienta'] ?? '') ?></textarea>
                 </div>
                 <textarea name="extra[herramientas][<?= $index ?>][recomendaciones_herramienta]" rows="2" placeholder="Recomendaciones" class="mt-3 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['recomendaciones_herramienta'] ?? '') ?></textarea>
@@ -332,7 +332,7 @@ $extraRows = $context['filas_extra'];
         <div class="flex items-center justify-between gap-4 mb-4">
             <div>
                 <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Archivo</p>
-                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Archivos mediaticos</h2>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Archivos mediáticos</h2>
             </div>
             <button type="button" data-add-row="medios" class="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100 transition">Agregar fila</button>
         </div>
@@ -345,14 +345,14 @@ $extraRows = $context['filas_extra'];
                     <input type="text" name="extra[medios][<?= $index ?>][nombre_medio]" value="<?= htmlspecialchars($row['nombre_medio'] ?? '') ?>" placeholder="Nombre del medio" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                 </div>
                 <div class="grid lg:grid-cols-2 gap-3 mt-3">
-                    <input type="text" name="extra[medios][<?= $index ?>][titulo_referencia]" value="<?= htmlspecialchars($row['titulo_referencia'] ?? '') ?>" placeholder="Titulo o referencia" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <input type="text" name="extra[medios][<?= $index ?>][url_referencia]" value="<?= htmlspecialchars($row['url_referencia'] ?? '') ?>" placeholder="URL o ubicacion" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <textarea name="extra[medios][<?= $index ?>][representacion_institucion]" rows="2" placeholder="Como se representa a la institucion" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['representacion_institucion'] ?? '') ?></textarea>
-                    <textarea name="extra[medios][<?= $index ?>][ejes_tematicos]" rows="2" placeholder="Ejes tematicos" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['ejes_tematicos'] ?? '') ?></textarea>
-                    <textarea name="extra[medios][<?= $index ?>][evaluacion_historica]" rows="2" placeholder="Evaluacion en el tiempo" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['evaluacion_historica'] ?? '') ?></textarea>
-                    <textarea name="extra[medios][<?= $index ?>][mejora_relaciones_publicas]" rows="2" placeholder="Mejoras en relaciones publicas" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['mejora_relaciones_publicas'] ?? '') ?></textarea>
+                    <input type="text" name="extra[medios][<?= $index ?>][titulo_referencia]" value="<?= htmlspecialchars($row['titulo_referencia'] ?? '') ?>" placeholder="Título o referencia" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <input type="text" name="extra[medios][<?= $index ?>][url_referencia]" value="<?= htmlspecialchars($row['url_referencia'] ?? '') ?>" placeholder="URL o ubicación" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <textarea name="extra[medios][<?= $index ?>][representacion_institucion]" rows="2" placeholder="Cómo se representa a la institución" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['representacion_institucion'] ?? '') ?></textarea>
+                    <textarea name="extra[medios][<?= $index ?>][ejes_tematicos]" rows="2" placeholder="Ejes temáticos" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['ejes_tematicos'] ?? '') ?></textarea>
+                    <textarea name="extra[medios][<?= $index ?>][evaluacion_historica]" rows="2" placeholder="Evaluación en el tiempo" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['evaluacion_historica'] ?? '') ?></textarea>
+                    <textarea name="extra[medios][<?= $index ?>][mejora_relaciones_publicas]" rows="2" placeholder="Mejoras en relaciones públicas" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['mejora_relaciones_publicas'] ?? '') ?></textarea>
                 </div>
-                <textarea name="extra[medios][<?= $index ?>][observacion_vocerias]" rows="2" placeholder="Observaciones sobre vocerias" class="mt-3 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['observacion_vocerias'] ?? '') ?></textarea>
+                <textarea name="extra[medios][<?= $index ?>][observacion_vocerias]" rows="2" placeholder="Observaciones sobre vocerías" class="mt-3 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['observacion_vocerias'] ?? '') ?></textarea>
             </div>
             <?php endforeach; ?>
         </div>
@@ -364,7 +364,7 @@ $extraRows = $context['filas_extra'];
         <div class="flex items-center justify-between gap-4 mb-4">
             <div>
                 <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Archivo</p>
-                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Archivos de la propia institucion</h2>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Archivos de la propia institución</h2>
             </div>
             <button type="button" data-add-row="institucionales" class="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100 transition">Agregar fila</button>
         </div>
@@ -373,13 +373,13 @@ $extraRows = $context['filas_extra'];
             <div class="rounded-3xl border border-slate-200 p-5" data-repeater-row>
                 <div class="grid lg:grid-cols-3 gap-3">
                     <input type="text" name="extra[institucionales][<?= $index ?>][tipo_recurso]" value="<?= htmlspecialchars($row['tipo_recurso'] ?? '') ?>" placeholder="Tipo de recurso" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <input type="text" name="extra[institucionales][<?= $index ?>][titulo_recurso]" value="<?= htmlspecialchars($row['titulo_recurso'] ?? '') ?>" placeholder="Titulo del recurso" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <input type="text" name="extra[institucionales][<?= $index ?>][titulo_recurso]" value="<?= htmlspecialchars($row['titulo_recurso'] ?? '') ?>" placeholder="Título del recurso" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                     <input type="date" name="extra[institucionales][<?= $index ?>][fecha_recurso]" value="<?= htmlspecialchars($row['fecha_recurso'] ?? '') ?>" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                 </div>
                 <div class="grid lg:grid-cols-2 gap-3 mt-3">
-                    <input type="text" name="extra[institucionales][<?= $index ?>][publico_objetivo]" value="<?= htmlspecialchars($row['publico_objetivo'] ?? '') ?>" placeholder="Publico objetivo" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <input type="text" name="extra[institucionales][<?= $index ?>][url_recurso]" value="<?= htmlspecialchars($row['url_recurso'] ?? '') ?>" placeholder="URL o ubicacion" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
-                    <textarea name="extra[institucionales][<?= $index ?>][descripcion_recurso]" rows="2" placeholder="Descripcion" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['descripcion_recurso'] ?? '') ?></textarea>
+                    <input type="text" name="extra[institucionales][<?= $index ?>][publico_objetivo]" value="<?= htmlspecialchars($row['publico_objetivo'] ?? '') ?>" placeholder="Público objetivo" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <input type="text" name="extra[institucionales][<?= $index ?>][url_recurso]" value="<?= htmlspecialchars($row['url_recurso'] ?? '') ?>" placeholder="URL o ubicación" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+                    <textarea name="extra[institucionales][<?= $index ?>][descripcion_recurso]" rows="2" placeholder="Descripción" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['descripcion_recurso'] ?? '') ?></textarea>
                     <textarea name="extra[institucionales][<?= $index ?>][observaciones_recurso]" rows="2" placeholder="Observaciones" class="rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none"><?= htmlspecialchars($row['observaciones_recurso'] ?? '') ?></textarea>
                 </div>
             </div>
@@ -389,7 +389,7 @@ $extraRows = $context['filas_extra'];
     <?php endif; ?>
 
     <section class="rounded-[2rem] bg-white shadow-sm border border-slate-100 p-6">
-        <label class="block text-sm font-bold text-slate-700 mb-2">Observacion general</label>
+        <label class="block text-sm font-bold text-slate-700 mb-2">Observación general</label>
         <textarea name="observacion_general" rows="4" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Notas finales del levantamiento"><?= htmlspecialchars($evaluationRow['observacion_general'] ?? '') ?></textarea>
         <div class="mt-6 flex flex-wrap gap-3">
             <button type="submit" class="inline-flex items-center justify-center rounded-2xl bg-primary px-6 py-3 text-white font-extrabold shadow-lg shadow-primary/30 hover:bg-primary/90 transition">

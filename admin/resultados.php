@@ -31,7 +31,7 @@ include __DIR__ . '/../templates/admin_header.php';
 <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
     <div>
         <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Reporte consolidado</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Resultados del diagnostico</h1>
+        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Resultados del diagnóstico</h1>
         <p class="mt-3 text-slate-600">Consulta las respuestas por instrumento, audiencia, estado y participante.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
@@ -54,7 +54,7 @@ include __DIR__ . '/../templates/admin_header.php';
         <input type="hidden" name="periodo" value="<?= $selectedPeriodId ?>">
         <div>
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Buscar</label>
-            <input type="text" name="search" value="<?= htmlspecialchars((string) $filters['search']) ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Instrumento, participante, organizacion">
+            <input type="text" name="search" value="<?= htmlspecialchars((string) $filters['search']) ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Instrumento, participante, organización">
         </div>
         <div>
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Instrumento</label>
@@ -104,7 +104,7 @@ include __DIR__ . '/../templates/admin_header.php';
                     <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Estado</th>
                     <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Puntaje</th>
                     <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Fecha</th>
-                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Accion</th>
+                    <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Acción</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 bg-white">

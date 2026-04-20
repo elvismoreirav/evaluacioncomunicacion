@@ -27,7 +27,7 @@ include __DIR__ . '/../templates/admin_header.php';
 <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
     <div>
         <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Resumen institucional</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Dashboard del diagnostico de comunicacion</h1>
+        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Dashboard del diagnóstico de comunicación</h1>
         <p class="mt-3 text-slate-600">Control del periodo, participantes, instrumentos cargados y registros recientes.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
@@ -81,7 +81,7 @@ include __DIR__ . '/../templates/admin_header.php';
                 <p class="mt-3 text-sm text-slate-700"><?= format_datetime($period['fecha_inicio_diagnostico'] ?? null) ?> a <?= format_datetime($period['fecha_fin_diagnostico'] ?? null) ?></p>
             </div>
             <div class="rounded-3xl bg-slate-50 border border-slate-200 p-5">
-                <p class="text-xs uppercase tracking-wide font-bold text-slate-500">Revision</p>
+                <p class="text-xs uppercase tracking-wide font-bold text-slate-500">Revisión</p>
                 <p class="mt-3 text-sm text-slate-700"><?= format_datetime($period['fecha_inicio_revision'] ?? null) ?> a <?= format_datetime($period['fecha_fin_revision'] ?? null) ?></p>
             </div>
         </div>
@@ -92,11 +92,11 @@ include __DIR__ . '/../templates/admin_header.php';
     </section>
 
     <section class="rounded-[2rem] bg-slate-900 text-white shadow-xl p-8">
-        <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-accent">Sincronizacion interna</p>
+        <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-accent">Sincronización interna</p>
         <h2 class="mt-2 text-2xl font-extrabold">Participantes internos actualizados</h2>
         <div class="mt-6 grid grid-cols-2 gap-4">
             <div class="rounded-3xl bg-white/10 p-5">
-                <p class="text-xs uppercase tracking-wide font-bold text-white/60">Activos leidos</p>
+                <p class="text-xs uppercase tracking-wide font-bold text-white/60">Activos leídos</p>
                 <p class="mt-3 text-4xl font-extrabold"><?= (int) $sync['total_activos'] ?></p>
             </div>
             <div class="rounded-3xl bg-white/10 p-5">
@@ -112,7 +112,7 @@ include __DIR__ . '/../templates/admin_header.php';
     <section class="rounded-[2rem] bg-white border border-slate-100 shadow-sm overflow-hidden">
         <div class="px-8 py-6 border-b border-slate-100">
             <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Instrumentos base</p>
-            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Catalogo cargado desde la guia</h2>
+            <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Catálogo cargado desde la guía</h2>
         </div>
         <div class="divide-y divide-slate-100">
             <?php foreach ($instruments as $instrument): ?>
@@ -149,7 +149,7 @@ include __DIR__ . '/../templates/admin_header.php';
         <div class="px-8 py-6 border-b border-slate-100 flex items-center justify-between gap-4">
             <div>
                 <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Actividad reciente</p>
-                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Ultimos registros</h2>
+                <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Últimos registros</h2>
             </div>
             <a href="resultados.php?periodo=<?= $selectedPeriodId ?>" class="text-sm font-bold text-primary hover:underline">Ver reporte completo</a>
         </div>

@@ -36,7 +36,7 @@ $publicNavigationMode = $publicNavigationMode ?? ($currentEmployee ? 'employee' 
                 <img src="<?= INSTITUTION_LOGO ?>" alt="UECR" class="h-11 w-11 rounded-full bg-white shadow">
                 <div class="min-w-0">
                     <p class="truncate text-lg font-extrabold text-primary"><?= APP_NAME ?></p>
-                    <p class="truncate text-xs text-gray-500">Diagnostico de comunicacion institucional</p>
+                    <p class="truncate text-xs text-gray-500">Diagnóstico de comunicación institucional</p>
                 </div>
             </div>
             <?php if ($publicNavigationMode !== 'none'): ?>
@@ -59,7 +59,7 @@ $publicNavigationMode = $publicNavigationMode ?? ($currentEmployee ? 'employee' 
         <?php if ($flash): ?>
         <?php
         $flashIsSuccess = ($flash['type'] ?? '') === 'success';
-        $flashTitle = $flashIsSuccess ? 'Operacion completada' : 'Revise la informacion';
+        $flashTitle = $flashIsSuccess ? 'Operación completada' : 'Revise la información';
         $flashClasses = $flashIsSuccess
             ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
             : 'border-red-200 bg-red-50 text-red-800';

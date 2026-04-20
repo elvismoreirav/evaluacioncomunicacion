@@ -66,10 +66,10 @@ $windowClasses = $windowOpen
                         </div>
                         <p class="mt-6 text-xs font-extrabold uppercase tracking-[0.24em] text-primary">Acceso externo</p>
                         <h1 class="mt-3 max-w-3xl text-4xl font-extrabold leading-tight text-slate-900 lg:text-5xl">
-                            Formulario externo del diagnostico de comunicacion.
+                            Formulario externo del diagnóstico de comunicación.
                         </h1>
                         <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-                            Este enlace esta destinado a organizaciones aliadas, actores externos y participantes mixtos. Desde aqui se accede unicamente al formulario externo.
+                            Este enlace está destinado a organizaciones aliadas, actores externos y participantes mixtos. Desde aquí se accede únicamente al formulario externo.
                         </p>
 
                         <div class="mt-8 grid gap-4 sm:grid-cols-3">
@@ -83,7 +83,7 @@ $windowClasses = $windowOpen
                             </div>
                             <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Modalidad</p>
-                                <p class="mt-3 text-sm text-slate-700">Participacion externa y mixta</p>
+                                <p class="mt-3 text-sm text-slate-700">Participación externa y mixta</p>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@ $windowClasses = $windowOpen
                         <h2 class="mt-4 text-3xl font-extrabold">Antes de comenzar</h2>
                         <ul class="mt-6 space-y-4 text-sm leading-6 text-white/85">
                             <li>Complete el formulario en un solo momento si es posible.</li>
-                            <li>Tenga a mano sus datos de representacion, cargo y organizacion.</li>
+                            <li>Tenga a mano sus datos de representación, cargo y organización.</li>
                             <li>Use este acceso solo si fue invitado como participante externo o mixto.</li>
                         </ul>
 
@@ -113,7 +113,7 @@ $windowClasses = $windowOpen
             <?php if ($flash): ?>
             <?php
             $flashIsSuccess = ($flash['type'] ?? '') === 'success';
-            $flashTitle = $flashIsSuccess ? 'Operacion completada' : 'Revise la informacion';
+            $flashTitle = $flashIsSuccess ? 'Operación completada' : 'Revise la información';
             $flashClasses = $flashIsSuccess
                 ? 'border-emerald-200 bg-emerald-50 text-emerald-800'
                 : 'border-red-200 bg-red-50 text-red-800';
@@ -126,10 +126,10 @@ $windowClasses = $windowOpen
 
             <section class="mt-8 grid gap-6 lg:grid-cols-[1.1fr,0.9fr]">
                 <article class="rounded-[2rem] border border-slate-100 bg-white p-8 shadow-sm">
-                    <p class="text-xs font-extrabold uppercase tracking-[0.24em] text-primary">Participacion externa</p>
+                    <p class="text-xs font-extrabold uppercase tracking-[0.24em] text-primary">Participación externa</p>
                     <h2 class="mt-3 text-2xl font-extrabold text-slate-900">Acceda al formulario correcto</h2>
                     <p class="mt-4 text-sm leading-7 text-slate-600">
-                        El enlace principal ya no muestra otros accesos. Desde esta pagina solo se habilita la ruta del formulario externo para evitar confusiones durante la invitacion y la respuesta.
+                        El enlace principal ya no muestra otros accesos. Desde esta página solo se habilita la ruta del formulario externo para evitar confusiones durante la invitación y la respuesta.
                     </p>
 
                     <div class="mt-6 rounded-3xl border px-5 py-5 <?= $windowClasses ?>">
@@ -139,7 +139,7 @@ $windowClasses = $windowOpen
                             <?php if ($windowOpen): ?>
                             El periodo se encuentra activo y dentro de la ventana configurada para respuestas.
                             <?php else: ?>
-                            La captura permanece cerrada. Si necesita responder hoy, administracion debe reabrir la ventana del periodo.
+                            La captura permanece cerrada. Si necesita responder hoy, administración debe reabrir la ventana del periodo.
                             <?php endif; ?>
                         </p>
                     </div>
@@ -159,11 +159,11 @@ $windowClasses = $windowOpen
 
                 <article class="rounded-[2rem] border border-slate-100 bg-white p-8 shadow-sm">
                     <p class="text-xs font-extrabold uppercase tracking-[0.24em] text-primary">Indicaciones</p>
-                    <h2 class="mt-3 text-2xl font-extrabold text-slate-900">Que esperar del proceso</h2>
+                    <h2 class="mt-3 text-2xl font-extrabold text-slate-900">Qué esperar del proceso</h2>
                     <div class="mt-5 space-y-4 text-sm leading-7 text-slate-600">
-                        <p>El formulario se responde por pasos y muestra su avance por secciones para que la experiencia sea mas clara.</p>
-                        <p>Al final podra revisar la informacion antes del envio y agregar observaciones generales si aportan contexto.</p>
-                        <p>Si usted pertenece al personal interno o requiere acceso administrativo, utilice el enlace especifico que le hayan compartido por separado.</p>
+                        <p>El formulario se responde por pasos y muestra su avance por secciones para que la experiencia sea más clara.</p>
+                        <p>Al final podrá revisar la información antes del envío y agregar observaciones generales si aportan contexto.</p>
+                        <p>Si usted pertenece al personal interno o requiere acceso administrativo, utilice el enlace específico que le hayan compartido por separado.</p>
                     </div>
                 </article>
             </section>

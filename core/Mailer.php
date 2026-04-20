@@ -70,7 +70,7 @@ class Mailer
     {
         return self::sendTemplate(
             $email,
-            'Acceso al Panel de Diagnostico de Comunicacion - UECR',
+            'Acceso al Panel de Diagnóstico de Comunicación - UECR',
             'admin_credentials',
             $data
         );
@@ -80,7 +80,7 @@ class Mailer
     {
         return self::sendTemplate(
             $email,
-            'Tiene un diagnostico de comunicacion pendiente - UECR',
+            'Tiene un diagnóstico de comunicación pendiente - UECR',
             'evaluation_notification',
             $data
         );
@@ -139,7 +139,7 @@ class Mailer
 
         return implode("\n", [
             INSTITUTION_NAME,
-            (string) ($data['mensaje'] ?? 'Notificacion del sistema de diagnostico de comunicacion.'),
+            (string) ($data['mensaje'] ?? 'Notificación del sistema de diagnóstico de comunicación.'),
             APP_URL,
         ]);
     }

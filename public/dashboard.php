@@ -30,7 +30,7 @@ include __DIR__ . '/../templates/public_header.php';
         </p>
         <?php if (($period['estado_cfg'] ?? '') !== 'ACTIVO'): ?>
         <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800">
-            El periodo esta en estado <?= htmlspecialchars($period['estado_cfg'] ?? 'BORRADOR') ?>. La captura no se encuentra habilitada.
+            El periodo está en estado <?= htmlspecialchars($period['estado_cfg'] ?? 'BORRADOR') ?>. La captura no se encuentra habilitada.
         </div>
         <?php endif; ?>
     </section>

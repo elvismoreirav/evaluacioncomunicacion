@@ -60,11 +60,11 @@ if ($isInternalAccess) {
 
     if (request_method_is('POST')) {
         if (!verify_csrf($_POST['csrf_token'] ?? null)) {
-            throw new RuntimeException('Token CSRF invalido.');
+            throw new RuntimeException('Token CSRF inválido.');
         }
 
         if (empty($context['ventana_abierta'])) {
-            throw new RuntimeException('La ventana del diagnostico no se encuentra habilitada.');
+            throw new RuntimeException('La ventana del diagnóstico no se encuentra habilitada.');
         }
 
         try {
@@ -96,11 +96,11 @@ if ($isInternalAccess) {
 
     if (request_method_is('POST')) {
         if (!verify_csrf($_POST['csrf_token'] ?? null)) {
-            throw new RuntimeException('Token CSRF invalido.');
+            throw new RuntimeException('Token CSRF inválido.');
         }
 
         if (empty($context['ventana_abierta'])) {
-            throw new RuntimeException('La ventana del diagnostico no se encuentra habilitada.');
+            throw new RuntimeException('La ventana del diagnóstico no se encuentra habilitada.');
         }
 
         try {
@@ -109,19 +109,19 @@ if ($isInternalAccess) {
             }
 
             if ($participantData['genero_par'] === '') {
-                throw new InvalidArgumentException('Seleccione la identificacion de genero del participante.');
+                throw new InvalidArgumentException('Seleccione la identificación de género del participante.');
             }
 
             if ($participantData['cargo_par'] === '') {
-                throw new InvalidArgumentException('Ingrese el cargo, funcion o representacion del participante.');
+                throw new InvalidArgumentException('Ingrese el cargo, función o representación del participante.');
             }
 
             if ($participantData['organizacion_par'] === '') {
-                throw new InvalidArgumentException('Ingrese la organizacion, institucion o colectivo del participante.');
+                throw new InvalidArgumentException('Ingrese la organización, institución o colectivo del participante.');
             }
 
             if ($participantData['publico_par'] === '') {
-                throw new InvalidArgumentException('Ingrese el publico o sector que representa.');
+                throw new InvalidArgumentException('Ingrese el público o sector que representa.');
             }
 
             $createdParticipantId = 0;
@@ -181,7 +181,7 @@ $windowStateClasses = !empty($context['ventana_abierta'])
     ? 'bg-emerald-100 text-emerald-800'
     : 'bg-amber-100 text-amber-800';
 $submitLabel = !empty($context['evaluacion']['serial_eva'])
-    ? ($isInternalAccess ? 'Actualizar y enviar' : 'Actualizar envio')
+    ? ($isInternalAccess ? 'Actualizar y enviar' : 'Actualizar envío')
     : ($isInternalAccess ? 'Guardar y enviar' : 'Registrar formulario');
 
 $questionHasAnswer = static function (array $question): bool {
@@ -235,8 +235,8 @@ if ($isInternalAccess) {
 
     $steps[] = [
         'kind' => 'participant',
-        'title' => 'Identificacion del participante',
-        'description' => 'Necesitamos estos datos para contextualizar la respuesta y clasificar la participacion.',
+        'title' => 'Identificación del participante',
+        'description' => 'Necesitamos estos datos para contextualizar la respuesta y clasificar la participación.',
         'meta' => $participantCompletedFields . '/' . count($participantRequiredFields) . ' campos listos',
     ];
 }
@@ -255,7 +255,7 @@ foreach ($context['secciones'] as $sectionIndex => $section) {
 
     $steps[] = [
         'kind' => 'section',
-        'title' => (string) ($section['titulo_sec'] ?? 'Seccion'),
+        'title' => (string) ($section['titulo_sec'] ?? 'Sección'),
         'description' => (string) ($section['descripcion_sec'] ?? 'Responda las preguntas de esta etapa.'),
         'meta' => $sectionAnsweredTotal . '/' . $sectionQuestionTotal . ' respondidas',
         'section' => $section,
@@ -267,9 +267,9 @@ foreach ($context['secciones'] as $sectionIndex => $section) {
 
 $steps[] = [
     'kind' => 'review',
-    'title' => 'Revision final',
-    'description' => 'Agregue observaciones generales y confirme el envio cuando haya terminado.',
-    'meta' => 'Resumen y envio',
+    'title' => 'Revisión final',
+    'description' => 'Agregue observaciones generales y confirme el envío cuando haya terminado.',
+    'meta' => 'Resumen y envío',
 ];
 
 $stepCount = count($steps);
@@ -372,7 +372,7 @@ include __DIR__ . '/../templates/public_header.php';
         <div class="rounded-[2rem] border border-amber-200 bg-amber-50 px-6 py-5 text-amber-900">
             <p class="text-sm font-extrabold uppercase tracking-[0.18em]">Formulario en modo consulta</p>
             <p class="mt-2 text-sm leading-6">
-                La ventana del diagnostico esta cerrada para este periodo. Puede revisar las preguntas, pero el envio permanecera bloqueado hasta que administracion vuelva a habilitarlo.
+                La ventana del diagnóstico está cerrada para este periodo. Puede revisar las preguntas, pero el envío permanecerá bloqueado hasta que administración vuelva a habilitarlo.
             </p>
         </div>
         <?php endif; ?>
@@ -404,7 +404,7 @@ include __DIR__ . '/../templates/public_header.php';
                         <p class="mt-2 text-sm font-extrabold text-slate-900"><?= htmlspecialchars($evaluation->participantDisplayName($participant)) ?></p>
                     </div>
                     <div class="rounded-2xl bg-slate-50 px-4 py-4">
-                        <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Cedula</p>
+                        <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Cédula</p>
                         <p class="mt-2 text-sm font-extrabold text-slate-900"><?= htmlspecialchars($currentEmployee['cedula'] ?? '') ?></p>
                     </div>
                     <div class="rounded-2xl bg-slate-50 px-4 py-4">
@@ -417,7 +417,7 @@ include __DIR__ . '/../templates/public_header.php';
                     </div>
                     <?php if (!empty($participant['cargo_par'])): ?>
                     <div class="rounded-2xl bg-slate-50 px-4 py-4 md:col-span-2 xl:col-span-4">
-                        <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Cargo o area</p>
+                        <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Cargo o área</p>
                         <p class="mt-2 text-sm font-extrabold text-slate-900"><?= htmlspecialchars($participant['cargo_par']) ?></p>
                     </div>
                     <?php endif; ?>
@@ -425,7 +425,7 @@ include __DIR__ . '/../templates/public_header.php';
                 <?php elseif ($step['kind'] === 'participant'): ?>
                 <div class="grid gap-4 p-6 md:grid-cols-2 xl:grid-cols-3">
                     <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Categoria</label>
+                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Categoría</label>
                         <select name="tipo_participante" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
                             <option value="EXTERNO" <?= $participantType === 'EXTERNO' ? 'selected' : '' ?>>Externo</option>
                             <option value="MIXTO" <?= $participantType === 'MIXTO' ? 'selected' : '' ?>>Mixto</option>
@@ -440,24 +440,24 @@ include __DIR__ . '/../templates/public_header.php';
                         <input type="text" name="apellidos_par" value="<?= htmlspecialchars($participantData['apellidos_par']) ?>" autocomplete="family-name" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Genero</label>
+                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Género</label>
                         <select name="genero_par" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
                             <option value="">Seleccione</option>
-                            <?php foreach (['MUJER' => 'Mujer', 'VARON' => 'Varon', 'NO_BINARIO' => 'No binario', 'OTRO' => 'Otro', 'PREFIERE_NO_DECIR' => 'Prefiere no decir'] as $value => $label): ?>
+                            <?php foreach (['MUJER' => 'Mujer', 'VARON' => 'Varón', 'NO_BINARIO' => 'No binario', 'OTRO' => 'Otro', 'PREFIERE_NO_DECIR' => 'Prefiere no decir'] as $value => $label): ?>
                             <option value="<?= $value ?>" <?= $participantData['genero_par'] === $value ? 'selected' : '' ?>><?= htmlspecialchars($label) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Cargo o representacion</label>
+                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Cargo o representación</label>
                         <input type="text" name="cargo_par" value="<?= htmlspecialchars($participantData['cargo_par']) ?>" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Organizacion o colectivo</label>
+                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Organización o colectivo</label>
                         <input type="text" name="organizacion_par" value="<?= htmlspecialchars($participantData['organizacion_par']) ?>" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
                     </div>
                     <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Publico o sector representado</label>
+                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Público o sector representado</label>
                         <input type="text" name="publico_par" value="<?= htmlspecialchars($participantData['publico_par']) ?>" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
                     </div>
                     <div>
@@ -465,13 +465,13 @@ include __DIR__ . '/../templates/public_header.php';
                         <input type="email" name="email_par" value="<?= htmlspecialchars($participantData['email_par']) ?>" autocomplete="email" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none">
                     </div>
                     <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Telefono</label>
+                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Teléfono</label>
                         <input type="text" name="telefono_par" value="<?= htmlspecialchars($participantData['telefono_par']) ?>" autocomplete="tel" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none">
                     </div>
                 </div>
                 <div class="px-6 pb-6">
                     <div class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-600">
-                        Estos datos solo se usan para clasificar la respuesta dentro del diagnostico y contextualizar el analisis final.
+                        Estos datos solo se usan para clasificar la respuesta dentro del diagnóstico y contextualizar el análisis final.
                     </div>
                 </div>
                 <?php elseif ($step['kind'] === 'section'): ?>
@@ -479,7 +479,7 @@ include __DIR__ . '/../templates/public_header.php';
                 <div class="space-y-5 p-6">
                     <div class="flex flex-wrap items-center gap-3">
                         <span class="rounded-full bg-primary/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-primary">
-                            Seccion <?= $step['section_number'] ?>
+                            Sección <?= $step['section_number'] ?>
                         </span>
                         <span class="rounded-full bg-slate-100 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.18em] text-slate-600">
                             <?= $step['answered_total'] ?>/<?= $step['question_total'] ?> respondidas
@@ -527,7 +527,7 @@ include __DIR__ . '/../templates/public_header.php';
                         </div>
 
                         <?php if (($question['tipo_respuesta'] ?? '') === 'TEXTO'): ?>
-                        <textarea name="<?= htmlspecialchars($inputName) ?>" rows="4" class="mt-4 w-full rounded-2xl border-2 border-slate-200 px-4 py-3 leading-6 focus:border-primary focus:outline-none" placeholder="Escriba su respuesta aqui" <?= $isRequiredQuestion ? 'required' : '' ?>><?= htmlspecialchars((string) ($submittedValue ?? $response['valor_texto'] ?? '')) ?></textarea>
+                        <textarea name="<?= htmlspecialchars($inputName) ?>" rows="4" class="mt-4 w-full rounded-2xl border-2 border-slate-200 px-4 py-3 leading-6 focus:border-primary focus:outline-none" placeholder="Escriba su respuesta aquí" <?= $isRequiredQuestion ? 'required' : '' ?>><?= htmlspecialchars((string) ($submittedValue ?? $response['valor_texto'] ?? '')) ?></textarea>
 
                         <?php elseif (in_array($question['tipo_respuesta'] ?? '', ['NUMERICA_ESCALA', 'UNICA_OPCION'], true) && !empty($question['escala'])): ?>
                         <div class="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
@@ -566,14 +566,14 @@ include __DIR__ . '/../templates/public_header.php';
                         </div>
 
                         <?php elseif (($question['tipo_respuesta'] ?? '') === 'NUMERO'): ?>
-                        <input type="number" step="0.01" name="<?= htmlspecialchars($inputName) ?>" value="<?= htmlspecialchars((string) ($submittedValue ?? $response['valor_numero'] ?? '')) ?>" class="mt-4 w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Ingrese un valor numerico" <?= $isRequiredQuestion ? 'required' : '' ?>>
+                        <input type="number" step="0.01" name="<?= htmlspecialchars($inputName) ?>" value="<?= htmlspecialchars((string) ($submittedValue ?? $response['valor_numero'] ?? '')) ?>" class="mt-4 w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Ingrese un valor numérico" <?= $isRequiredQuestion ? 'required' : '' ?>>
 
                         <?php elseif (($question['tipo_respuesta'] ?? '') === 'FECHA'): ?>
                         <input type="date" name="<?= htmlspecialchars($inputName) ?>" value="<?= htmlspecialchars((string) ($submittedValue ?? $response['valor_fecha'] ?? '')) ?>" class="mt-4 w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" <?= $isRequiredQuestion ? 'required' : '' ?>>
 
                         <?php elseif (($question['tipo_respuesta'] ?? '') === 'BOOLEANO'): ?>
                         <div class="mt-4 grid gap-3 sm:grid-cols-2">
-                            <?php foreach (['SI' => 'Si', 'NO' => 'No'] as $value => $label): ?>
+                            <?php foreach (['SI' => 'Sí', 'NO' => 'No'] as $value => $label): ?>
                             <label class="relative">
                                 <input type="radio" name="<?= htmlspecialchars($inputName) ?>" value="<?= $value ?>" class="peer sr-only" <?= (string) ($submittedValue ?? $response['valor_booleano'] ?? '') === $value ? 'checked' : '' ?> <?= $isRequiredQuestion ? 'required' : '' ?>>
                                 <span class="flex h-full items-center rounded-2xl border-2 border-slate-200 px-4 py-4 text-sm font-bold text-slate-700 transition peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary">
@@ -596,8 +596,8 @@ include __DIR__ . '/../templates/public_header.php';
                 <?php else: ?>
                 <div class="grid gap-6 p-6 lg:grid-cols-[minmax(0,1.5fr),minmax(18rem,0.9fr)]">
                     <div>
-                        <label class="mb-2 block text-sm font-bold text-slate-700">Observacion general</label>
-                        <textarea name="observacion_general" rows="6" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 leading-6 focus:border-primary focus:outline-none" placeholder="Cierre con hallazgos, contexto o aclaraciones utiles si corresponde"><?= htmlspecialchars((string) ($_POST['observacion_general'] ?? $context['evaluacion']['observacion_general'] ?? '')) ?></textarea>
+                        <label class="mb-2 block text-sm font-bold text-slate-700">Observación general</label>
+                        <textarea name="observacion_general" rows="6" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 leading-6 focus:border-primary focus:outline-none" placeholder="Cierre con hallazgos, contexto o aclaraciones útiles si corresponde"><?= htmlspecialchars((string) ($_POST['observacion_general'] ?? $context['evaluacion']['observacion_general'] ?? '')) ?></textarea>
                     </div>
                     <div class="space-y-4">
                         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
@@ -618,7 +618,7 @@ include __DIR__ . '/../templates/public_header.php';
                             </dl>
                         </div>
                         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 text-slate-600">
-                            Revise que todas las preguntas obligatorias queden respondidas. Si el periodo esta fuera de ventana, el formulario se mantiene visible pero no permitira el envio.
+                            Revise que todas las preguntas obligatorias queden respondidas. Si el periodo está fuera de ventana, el formulario se mantiene visible pero no permitirá el envío.
                         </div>
                     </div>
                 </div>
@@ -626,7 +626,7 @@ include __DIR__ . '/../templates/public_header.php';
 
                 <div class="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 px-6 py-5">
                     <div class="text-sm text-slate-500">
-                        <?= $stepIndex === 0 ? 'Comience aqui y avance paso a paso.' : 'Puede volver al paso anterior si necesita corregir algo.' ?>
+                        <?= $stepIndex === 0 ? 'Comience aquí y avance paso a paso.' : 'Puede volver al paso anterior si necesita corregir algo.' ?>
                     </div>
                     <div class="flex flex-wrap items-center gap-3">
                         <?php if ($stepIndex > 0): ?>
@@ -637,7 +637,7 @@ include __DIR__ . '/../templates/public_header.php';
 
                         <?php if ($stepIndex < $stepCount - 1): ?>
                         <button type="button" data-step-next class="inline-flex items-center justify-center rounded-2xl bg-primary px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-primary/20 transition hover:bg-primary/90">
-                            <?= $stepIndex === $stepCount - 2 ? 'Ir a revision final' : 'Continuar' ?>
+                            <?= $stepIndex === $stepCount - 2 ? 'Ir a revisión final' : 'Continuar' ?>
                         </button>
                         <?php else: ?>
                             <?php if (!empty($context['ventana_abierta'])): ?>
@@ -646,7 +646,7 @@ include __DIR__ . '/../templates/public_header.php';
                             </button>
                             <?php else: ?>
                             <span class="inline-flex items-center justify-center rounded-2xl bg-slate-200 px-6 py-3 font-extrabold text-slate-500">
-                                Envio no habilitado
+                                Envío no habilitado
                             </span>
                             <?php endif; ?>
                         <?php endif; ?>

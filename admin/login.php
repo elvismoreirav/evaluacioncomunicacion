@@ -70,7 +70,7 @@ if (request_method_is('POST')) {
                     </button>
                 </form>
                 <div class="mt-6 text-center">
-                    <a href="../public/index.php" class="text-sm text-gray-500 hover:text-primary transition">Ir al formulario publico</a>
+                    <a href="../public/index.php" class="text-sm text-gray-500 hover:text-primary transition">Ir al formulario público</a>
                 </div>
             </div>
         </div>

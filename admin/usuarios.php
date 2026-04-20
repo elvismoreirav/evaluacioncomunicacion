@@ -12,7 +12,7 @@ $evaluation = new CommunicationEvaluation();
 
 if (request_method_is('POST')) {
     if (!verify_csrf($_POST['csrf_token'] ?? null)) {
-        throw new RuntimeException('Token CSRF invalido.');
+        throw new RuntimeException('Token CSRF inválido.');
     }
 
     try {
@@ -52,8 +52,8 @@ include __DIR__ . '/../templates/admin_header.php';
 ?>
 <div class="mb-8">
     <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Accesos administrativos</p>
-    <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Gestion de usuarios del panel</h1>
-    <p class="mt-3 text-slate-600">Administracion de cuentas con acceso al modulo de diagnostico de comunicacion.</p>
+    <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Gestión de usuarios del panel</h1>
+    <p class="mt-3 text-slate-600">Administración de cuentas con acceso al módulo de diagnóstico de comunicación.</p>
 </div>
 
 <div class="grid xl:grid-cols-[0.9fr,1.1fr] gap-6">
@@ -71,7 +71,7 @@ include __DIR__ . '/../templates/admin_header.php';
                     <input type="text" name="usuario" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Contrasena</label>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Contraseña</label>
                     <input type="text" name="password" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                 </div>
             </div>
@@ -112,7 +112,7 @@ include __DIR__ . '/../templates/admin_header.php';
                         <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Usuario</th>
                         <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Rol</th>
                         <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Estado</th>
-                        <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Ultimo acceso</th>
+                        <th class="px-6 py-4 text-left text-xs font-extrabold uppercase tracking-wide text-slate-500">Último acceso</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100 bg-white">

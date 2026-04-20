@@ -13,7 +13,7 @@ if ($selectedPeriodId <= 0) {
 
 if (request_method_is('POST')) {
     if (!verify_csrf($_POST['csrf_token'] ?? null)) {
-        throw new RuntimeException('Token CSRF invalido.');
+        throw new RuntimeException('Token CSRF inválido.');
     }
 
     try {
@@ -25,7 +25,7 @@ if (request_method_is('POST')) {
             'estado_cfg' => $_POST['estado_cfg'] ?? 'BORRADOR',
             'observacion_cfg' => $_POST['observacion_cfg'] ?? '',
         ]);
-        set_flash('success', 'Configuracion del periodo actualizada.');
+        set_flash('success', 'Configuración del periodo actualizada.');
     } catch (Throwable $throwable) {
         set_flash('error', $throwable->getMessage());
     }
@@ -38,16 +38,16 @@ $period = $evaluation->getConfiguredPeriod($selectedPeriodId);
 $periods = $evaluation->getAvailablePeriods();
 $instruments = $evaluation->getInstrumentCatalog();
 
-$pageTitle = 'Configuracion';
+$pageTitle = 'Configuración';
 $activeNav = 'config';
 $currentAdmin = Auth::getAdminUser();
 include __DIR__ . '/../templates/admin_header.php';
 ?>
 <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
     <div>
-        <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Configuracion base</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Periodo e instrumentos del diagnostico</h1>
-        <p class="mt-3 text-slate-600">La estructura del instrumento se siembra desde la guia y aqui se administra la ventana operativa del periodo.</p>
+        <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Configuración base</p>
+        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Periodo e instrumentos del diagnóstico</h1>
+        <p class="mt-3 text-slate-600">La estructura del instrumento se siembra desde la guía y aquí se administra la ventana operativa del periodo.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
         <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Periodo</label>
@@ -77,11 +77,11 @@ include __DIR__ . '/../templates/admin_header.php';
             <input type="datetime-local" name="fecha_fin_diagnostico" value="<?= htmlspecialchars(!empty($period['fecha_fin_diagnostico']) ? date('Y-m-d\TH:i', strtotime((string) $period['fecha_fin_diagnostico'])) : '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
-            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Inicio revision</label>
+            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Inicio revisión</label>
             <input type="datetime-local" name="fecha_inicio_revision" value="<?= htmlspecialchars(!empty($period['fecha_inicio_revision']) ? date('Y-m-d\TH:i', strtotime((string) $period['fecha_inicio_revision'])) : '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
-            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Fin revision</label>
+            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Fin revisión</label>
             <input type="datetime-local" name="fecha_fin_revision" value="<?= htmlspecialchars(!empty($period['fecha_fin_revision']) ? date('Y-m-d\TH:i', strtotime((string) $period['fecha_fin_revision'])) : '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
@@ -93,7 +93,7 @@ include __DIR__ . '/../templates/admin_header.php';
             </select>
         </div>
         <div class="lg:col-span-4">
-            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Observacion administrativa</label>
+            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Observación administrativa</label>
             <input type="text" name="observacion_cfg" value="<?= htmlspecialchars($period['observacion_cfg'] ?? '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Notas internas del periodo">
         </div>
         <div>
@@ -105,7 +105,7 @@ include __DIR__ . '/../templates/admin_header.php';
 <section class="rounded-[2rem] bg-white border border-slate-100 shadow-sm overflow-hidden">
     <div class="px-8 py-6 border-b border-slate-100">
         <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Instrumentos sembrados</p>
-        <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Mapa operativo del diagnostico</h2>
+        <h2 class="mt-2 text-2xl font-extrabold text-slate-900">Mapa operativo del diagnóstico</h2>
     </div>
     <div class="divide-y divide-slate-100">
         <?php foreach ($instruments as $instrument): ?>

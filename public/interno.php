@@ -17,7 +17,7 @@ if (request_method_is('POST')) {
         redirect('dashboard.php');
     }
 
-    $error = 'No pudimos iniciar sesion. Verifique su cedula y use ese mismo valor como contrasena.';
+    $error = 'No pudimos iniciar sesión. Verifique su cédula y use ese mismo valor como contraseña.';
 }
 ?>
 <!DOCTYPE html>
@@ -54,14 +54,14 @@ if (request_method_is('POST')) {
                         <img src="<?= INSTITUTION_LOGO ?>" alt="UECR" class="h-8 w-8 rounded-full">
                         <?= htmlspecialchars(INSTITUTION_NAME) ?>
                     </div>
-                    <h1 class="mt-6 text-5xl font-extrabold leading-tight text-slate-900">Ingreso del personal interno al diagnostico.</h1>
+                    <h1 class="mt-6 text-5xl font-extrabold leading-tight text-slate-900">Ingreso del personal interno al diagnóstico.</h1>
                     <p class="mt-5 text-lg text-slate-600">
-                        Este enlace queda reservado para directivos y personal propio. El sistema identifica automaticamente al colaborador activo y abre su instrumento interno.
+                        Este enlace queda reservado para directivos y personal propio. El sistema identifica automáticamente al colaborador activo y abre su instrumento interno.
                     </p>
                     <div class="mt-8 grid gap-4 sm:grid-cols-2">
                         <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                             <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Acceso</p>
-                            <p class="mt-3 text-sm text-slate-700">Usuario: cedula del colaborador. Contrasena: la misma cedula.</p>
+                            <p class="mt-3 text-sm text-slate-700">Usuario: cédula del colaborador. Contraseña: la misma cédula.</p>
                         </div>
                         <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                             <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Periodo</p>
@@ -87,12 +87,12 @@ if (request_method_is('POST')) {
 
                     <form method="post" class="space-y-5">
                         <div>
-                            <label class="mb-2 block text-sm font-bold text-gray-700">Cedula</label>
-                            <input type="text" name="cedula" maxlength="15" required class="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Ingrese su cedula">
+                            <label class="mb-2 block text-sm font-bold text-gray-700">Cédula</label>
+                            <input type="text" name="cedula" maxlength="15" required class="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Ingrese su cédula">
                         </div>
                         <div>
-                            <label class="mb-2 block text-sm font-bold text-gray-700">Contrasena</label>
-                            <input type="password" name="password" maxlength="15" required class="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Use su misma cedula">
+                            <label class="mb-2 block text-sm font-bold text-gray-700">Contraseña</label>
+                            <input type="password" name="password" maxlength="15" required class="w-full rounded-2xl border-2 border-gray-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Use su misma cédula">
                         </div>
                         <button type="submit" class="w-full rounded-2xl bg-primary py-3.5 font-extrabold text-white shadow-lg shadow-primary/30 transition hover:bg-primary/90">
                             Ingresar al sistema
@@ -100,7 +100,7 @@ if (request_method_is('POST')) {
                     </form>
 
                     <div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                        <p class="text-sm font-bold text-slate-700">Enlace de distribucion interna</p>
+                        <p class="text-sm font-bold text-slate-700">Enlace de distribución interna</p>
                         <p class="mt-2 text-sm text-slate-600"><?= htmlspecialchars(public_url('interno.php')) ?></p>
                     </div>
 

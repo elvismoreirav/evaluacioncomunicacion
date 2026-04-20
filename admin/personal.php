@@ -13,7 +13,7 @@ if ($selectedPeriodId <= 0) {
 
 if (request_method_is('POST')) {
     if (!verify_csrf($_POST['csrf_token'] ?? null)) {
-        throw new RuntimeException('Token CSRF invalido.');
+        throw new RuntimeException('Token CSRF inválido.');
     }
 
     try {
@@ -51,8 +51,8 @@ include __DIR__ . '/../templates/admin_header.php';
 <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
     <div>
         <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Participantes</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Gestion interna y externa del diagnostico</h1>
-        <p class="mt-3 text-slate-600">Los participantes internos se sincronizan desde nomina y los externos se registran manualmente.</p>
+        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Gestión interna y externa del diagnóstico</h1>
+        <p class="mt-3 text-slate-600">Los participantes internos se sincronizan desde nómina y los externos se registran manualmente.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
         <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Periodo</label>
@@ -76,7 +76,7 @@ include __DIR__ . '/../templates/admin_header.php';
             <input type="hidden" name="periodo" value="<?= $selectedPeriodId ?>">
             <input type="hidden" name="action" value="sync_personal">
             <div class="flex-1 min-w-[220px]">
-                <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Sincronizacion interna</p>
+                <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Sincronización interna</p>
                 <p class="mt-2 text-sm text-slate-600">Replica a los colaboradores activos como participantes internos usando la tabla <code>empleado</code>.</p>
             </div>
             <button type="submit" class="rounded-2xl bg-primary px-5 py-3 text-white font-extrabold shadow-lg shadow-primary/20 hover:bg-primary/90 transition">
@@ -89,7 +89,7 @@ include __DIR__ . '/../templates/admin_header.php';
             <input type="hidden" name="periodo" value="<?= $selectedPeriodId ?>">
             <div>
                 <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Buscar</label>
-                <input type="text" name="search" value="<?= htmlspecialchars((string) $filters['search']) ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Nombre, correo, organizacion">
+                <input type="text" name="search" value="<?= htmlspecialchars((string) $filters['search']) ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Nombre, correo, organización">
             </div>
             <div>
                 <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Tipo</label>
@@ -143,11 +143,11 @@ include __DIR__ . '/../templates/admin_header.php';
             <input type="text" name="cargo_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
-            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Organizacion</label>
+            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Organización</label>
             <input type="text" name="organizacion_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
-            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Publico o grupo</label>
+            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Público o grupo</label>
             <input type="text" name="publico_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
@@ -155,7 +155,7 @@ include __DIR__ . '/../templates/admin_header.php';
             <input type="email" name="email_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
-            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Telefono</label>
+            <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Teléfono</label>
             <input type="text" name="telefono_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
         </div>
         <div>
@@ -205,9 +205,9 @@ include __DIR__ . '/../templates/admin_header.php';
                     </select>
                 </div>
                 <div>
-                    <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Organizacion y publico</label>
-                    <input type="text" name="organizacion_par" value="<?= htmlspecialchars($participant['organizacion_par'] ?? '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Organizacion">
-                    <input type="text" name="publico_par" value="<?= htmlspecialchars($participant['publico_par'] ?? '') ?>" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Publico o grupo">
+                    <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Organización y público</label>
+                    <input type="text" name="organizacion_par" value="<?= htmlspecialchars($participant['organizacion_par'] ?? '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Organización">
+                    <input type="text" name="publico_par" value="<?= htmlspecialchars($participant['publico_par'] ?? '') ?>" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Público o grupo">
                 </div>
                 <div>
                     <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Cargo</label>
@@ -217,7 +217,7 @@ include __DIR__ . '/../templates/admin_header.php';
                 <div>
                     <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Contacto</label>
                     <input type="email" name="email_par" value="<?= htmlspecialchars($participant['email_par'] ?? '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Correo">
-                    <input type="text" name="telefono_par" value="<?= htmlspecialchars($participant['telefono_par'] ?? '') ?>" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Telefono">
+                    <input type="text" name="telefono_par" value="<?= htmlspecialchars($participant['telefono_par'] ?? '') ?>" class="mt-2 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Teléfono">
                 </div>
                 <div class="flex flex-col gap-3">
                     <button type="submit" class="rounded-2xl bg-slate-900 px-4 py-3 text-white text-sm font-extrabold hover:bg-slate-800 transition">
