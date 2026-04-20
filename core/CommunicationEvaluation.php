@@ -1,6 +1,6 @@
 <?php
 /**
- * Logica del diagnostico de comunicacion.
+ * Lógica del diagnóstico de comunicación.
  */
 
 class CommunicationEvaluation
@@ -80,7 +80,7 @@ class CommunicationEvaluation
         );
 
         if (!$period) {
-            throw new InvalidArgumentException('Periodo no encontrado.');
+            throw new InvalidArgumentException('Período no encontrado.');
         }
 
         $configured = Database::fetchOne(
@@ -113,7 +113,7 @@ class CommunicationEvaluation
         $allowedStates = ['BORRADOR', 'ACTIVO', 'CERRADO'];
         $state = strtoupper(trim((string) ($data['estado_cfg'] ?? 'BORRADOR')));
         if (!in_array($state, $allowedStates, true)) {
-            throw new InvalidArgumentException('Estado de periodo invalido.');
+            throw new InvalidArgumentException('Estado de período inválido.');
         }
 
         Database::update(
@@ -437,7 +437,7 @@ class CommunicationEvaluation
         $allowedTypes = ['INTERNO', 'EXTERNO', 'MIXTO'];
 
         if (!in_array($participantType, $allowedTypes, true)) {
-            throw new InvalidArgumentException('Tipo de participante invalido.');
+            throw new InvalidArgumentException('Tipo de participante inválido.');
         }
 
         $serialEpl = trim((string) ($data['serial_epl'] ?? ''));
@@ -571,7 +571,7 @@ class CommunicationEvaluation
         $allowedStates = ['BORRADOR', 'ENVIADA', 'REVISADA', 'CERRADA'];
         $state = strtoupper(trim($state));
         if (!in_array($state, $allowedStates, true)) {
-            throw new InvalidArgumentException('Estado de evaluacion invalido.');
+            throw new InvalidArgumentException('Estado de evaluación inválido.');
         }
 
         $context = $this->getEvaluationFormContext($serialPer, $serialIns, $serialPar);
@@ -1231,7 +1231,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if ($text === null) {
-                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
+                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluación.');
                 }
                 $base['valor_texto'] = $text;
                 return $base;
@@ -1243,7 +1243,7 @@ class CommunicationEvaluation
                 }
                 $option = $this->getScaleOption($optionId);
                 if (!$option) {
-                    throw new InvalidArgumentException('Seleccione una opcion valida en la escala antes de continuar.');
+                    throw new InvalidArgumentException('Seleccione una opción válida en la escala antes de continuar.');
                 }
                 $base['serial_eco'] = $optionId;
                 $base['valor_numero'] = $option['valor_opc'] !== null ? (float) $option['valor_opc'] : null;
@@ -1259,7 +1259,7 @@ class CommunicationEvaluation
                 if (!empty($question['escala'])) {
                     $option = $this->getScaleOption($selectedId);
                     if (!$option) {
-                        throw new InvalidArgumentException('Seleccione una opcion valida antes de continuar.');
+                        throw new InvalidArgumentException('Seleccione una opción válida antes de continuar.');
                     }
                     $base['serial_eco'] = $selectedId;
                     $base['valor_numero'] = $option['valor_opc'] !== null ? (float) $option['valor_opc'] : null;
@@ -1269,7 +1269,7 @@ class CommunicationEvaluation
 
                 $option = $this->getQuestionOption($selectedId);
                 if (!$option) {
-                    throw new InvalidArgumentException('Seleccione una opcion valida antes de continuar.');
+                    throw new InvalidArgumentException('Seleccione una opción válida antes de continuar.');
                 }
                 $base['serial_pop'] = $selectedId;
                 $base['valor_texto'] = $option['etiqueta_opc'];
@@ -1281,7 +1281,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if (empty($selected)) {
-                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
+                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluación.');
                 }
                 $labels = [];
                 foreach ($selected as $optionId) {
@@ -1300,7 +1300,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if (!in_array($boolValue, ['SI', 'NO'], true)) {
-                    throw new InvalidArgumentException('Seleccione Si o No para continuar.');
+                    throw new InvalidArgumentException('Seleccione Sí o No para continuar.');
                 }
                 $base['valor_booleano'] = $boolValue;
                 $base['valor_texto'] = $boolValue;
@@ -1309,12 +1309,12 @@ class CommunicationEvaluation
             case 'NUMERO':
                 if ($value === null || $value === '') {
                     if ($isRequired) {
-                        throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
+                        throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluación.');
                     }
                     return null;
                 }
                 if (!is_numeric((string) $value)) {
-                    throw new InvalidArgumentException('Ingrese un valor numerico valido.');
+                    throw new InvalidArgumentException('Ingrese un valor numérico válido.');
                 }
                 $base['valor_numero'] = (float) $value;
                 $base['valor_texto'] = (string) $value;
@@ -1326,7 +1326,7 @@ class CommunicationEvaluation
                     return null;
                 }
                 if ($date === null) {
-                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluacion.');
+                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluación.');
                 }
                 $base['valor_fecha'] = $date;
                 $base['valor_texto'] = $date;

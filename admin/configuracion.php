@@ -8,7 +8,7 @@ $activeAcademicPeriod = $evaluation->getActiveAcademicPeriod();
 $selectedPeriodId = (int) ($_REQUEST['periodo'] ?? ($activeAcademicPeriod['serial_per'] ?? 0));
 
 if ($selectedPeriodId <= 0) {
-    throw new RuntimeException('No existe un periodo disponible.');
+    throw new RuntimeException('No existe un período disponible.');
 }
 
 if (request_method_is('POST')) {
@@ -25,7 +25,7 @@ if (request_method_is('POST')) {
             'estado_cfg' => $_POST['estado_cfg'] ?? 'BORRADOR',
             'observacion_cfg' => $_POST['observacion_cfg'] ?? '',
         ]);
-        set_flash('success', 'Configuración del periodo actualizada.');
+        set_flash('success', 'Configuración del período actualizada.');
     } catch (Throwable $throwable) {
         set_flash('error', $throwable->getMessage());
     }
@@ -46,11 +46,11 @@ include __DIR__ . '/../templates/admin_header.php';
 <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
     <div>
         <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Configuración base</p>
-        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Periodo e instrumentos del diagnóstico</h1>
-        <p class="mt-3 text-slate-600">La estructura del instrumento se siembra desde la guía y aquí se administra la ventana operativa del periodo.</p>
+        <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Período e instrumentos del diagnóstico</h1>
+        <p class="mt-3 text-slate-600">La estructura del instrumento se siembra desde la guía y aquí se administra la ventana operativa del período.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
-        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Periodo</label>
+        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Período</label>
         <div class="flex items-center gap-3">
             <select name="periodo" class="rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-primary focus:outline-none">
                 <?php foreach ($periods as $periodOption): ?>
@@ -94,10 +94,10 @@ include __DIR__ . '/../templates/admin_header.php';
         </div>
         <div class="lg:col-span-4">
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Observación administrativa</label>
-            <input type="text" name="observacion_cfg" value="<?= htmlspecialchars($period['observacion_cfg'] ?? '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Notas internas del periodo">
+            <input type="text" name="observacion_cfg" value="<?= htmlspecialchars($period['observacion_cfg'] ?? '') ?>" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Notas internas del período">
         </div>
         <div>
-            <button type="submit" class="w-full rounded-2xl bg-primary px-5 py-3 text-white font-extrabold hover:bg-primary/90 transition">Guardar periodo</button>
+            <button type="submit" class="w-full rounded-2xl bg-primary px-5 py-3 text-white font-extrabold hover:bg-primary/90 transition">Guardar período</button>
         </div>
     </form>
 </section>

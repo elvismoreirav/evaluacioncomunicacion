@@ -8,7 +8,7 @@ $activeAcademicPeriod = $evaluation->getActiveAcademicPeriod();
 $selectedPeriodId = (int) ($_GET['periodo'] ?? ($activeAcademicPeriod['serial_per'] ?? 0));
 
 if ($selectedPeriodId <= 0) {
-    throw new RuntimeException('No existe un periodo disponible.');
+    throw new RuntimeException('No existe un período disponible.');
 }
 
 $evaluation->ensurePeriodConfigured($selectedPeriodId);
@@ -28,10 +28,10 @@ include __DIR__ . '/../templates/admin_header.php';
     <div>
         <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Resumen institucional</p>
         <h1 class="mt-2 text-3xl font-extrabold text-slate-900">Dashboard del diagnóstico de comunicación</h1>
-        <p class="mt-3 text-slate-600">Control del periodo, participantes, instrumentos cargados y registros recientes.</p>
+        <p class="mt-3 text-slate-600">Control del período, participantes, instrumentos cargados y registros recientes.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
-        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Cambiar periodo</label>
+        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Cambiar período</label>
         <div class="flex items-center gap-3">
             <select name="periodo" class="rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-primary focus:outline-none">
                 <?php foreach ($periods as $periodOption): ?>
@@ -68,7 +68,7 @@ include __DIR__ . '/../templates/admin_header.php';
     <section class="rounded-[2rem] bg-white border border-slate-100 shadow-sm p-8">
         <div class="flex items-center justify-between gap-4">
             <div>
-                <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Periodo configurado</p>
+                <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Período configurado</p>
                 <h2 class="mt-2 text-2xl font-extrabold text-slate-900"><?= htmlspecialchars($period['nombre_per'] ?? '') ?></h2>
             </div>
             <span class="inline-flex rounded-full px-4 py-2 text-xs font-extrabold <?= ($period['estado_cfg'] ?? 'BORRADOR') === 'ACTIVO' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600' ?>">

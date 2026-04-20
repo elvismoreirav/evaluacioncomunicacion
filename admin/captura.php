@@ -8,7 +8,7 @@ $activeAcademicPeriod = $evaluation->getActiveAcademicPeriod();
 $selectedPeriodId = (int) ($_REQUEST['periodo'] ?? ($activeAcademicPeriod['serial_per'] ?? 0));
 
 if ($selectedPeriodId <= 0) {
-    throw new RuntimeException('No existe un periodo disponible.');
+    throw new RuntimeException('No existe un período disponible.');
 }
 
 $evaluation->ensurePeriodConfigured($selectedPeriodId);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Bootstrap del sistema de diagnostico de comunicacion
+ * Bootstrap del sistema de diagnóstico de comunicación
  */
 
 require_once __DIR__ . '/config/config.php';

@@ -8,7 +8,7 @@ $employeeUser = Auth::getEmployeeUser();
 $activePeriod = $evaluation->getActiveAcademicPeriod();
 
 if (!$activePeriod) {
-    throw new RuntimeException('No existe un periodo lectivo activo.');
+    throw new RuntimeException('No existe un período lectivo activo.');
 }
 
 $dashboard = $evaluation->getEmployeeDashboard((int) $employeeUser['serial_epl'], (int) $activePeriod['serial_per']);
@@ -25,12 +25,12 @@ include __DIR__ . '/../templates/public_header.php';
         <p class="text-xs font-extrabold uppercase tracking-[0.24em] text-primary">Panel personal</p>
         <h1 class="mt-3 text-3xl font-extrabold text-slate-900"><?= htmlspecialchars(employee_full_name($dashboard['empleado'])) ?></h1>
         <p class="mt-3 text-slate-600">
-            Periodo configurado: <strong><?= htmlspecialchars($period['nombre_per'] ?? '') ?></strong>.
+            Período configurado: <strong><?= htmlspecialchars($period['nombre_per'] ?? '') ?></strong>.
             El instrumento habilitado para este acceso es <strong><?= htmlspecialchars($instrument['nombre_ins']) ?></strong>.
         </p>
         <?php if (($period['estado_cfg'] ?? '') !== 'ACTIVO'): ?>
         <div class="mt-5 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800">
-            El periodo está en estado <?= htmlspecialchars($period['estado_cfg'] ?? 'BORRADOR') ?>. La captura no se encuentra habilitada.
+            El período está en estado <?= htmlspecialchars($period['estado_cfg'] ?? 'BORRADOR') ?>. La captura no se encuentra habilitada.
         </div>
         <?php endif; ?>
     </section>
@@ -70,7 +70,7 @@ include __DIR__ . '/../templates/public_header.php';
     </div>
 
     <div class="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-5">
-        <p class="text-sm text-slate-600">Periodo de levantamiento</p>
+        <p class="text-sm text-slate-600">Período de levantamiento</p>
         <p class="mt-1 text-lg font-extrabold text-slate-900"><?= format_datetime($period['fecha_inicio_diagnostico'] ?? null) ?> a <?= format_datetime($period['fecha_fin_diagnostico'] ?? null) ?></p>
     </div>
 

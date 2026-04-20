@@ -8,7 +8,7 @@ $activeAcademicPeriod = $evaluation->getActiveAcademicPeriod();
 $selectedPeriodId = (int) ($_GET['periodo'] ?? ($activeAcademicPeriod['serial_per'] ?? 0));
 
 if ($selectedPeriodId <= 0) {
-    throw new RuntimeException('No existe un periodo disponible.');
+    throw new RuntimeException('No existe un período disponible.');
 }
 
 $evaluation->ensurePeriodConfigured($selectedPeriodId);
@@ -35,7 +35,7 @@ include __DIR__ . '/../templates/admin_header.php';
         <p class="mt-3 text-slate-600">Consulta las respuestas por instrumento, audiencia, estado y participante.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
-        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Periodo</label>
+        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Período</label>
         <div class="flex items-center gap-3">
             <select name="periodo" class="rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-primary focus:outline-none">
                 <?php foreach ($periods as $periodOption): ?>
@@ -91,7 +91,7 @@ include __DIR__ . '/../templates/admin_header.php';
 
 <section class="rounded-[2rem] bg-white border border-slate-100 shadow-sm overflow-hidden">
     <div class="px-6 py-5 border-b border-slate-100">
-        <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Periodo seleccionado</p>
+        <p class="text-xs uppercase tracking-[0.24em] font-extrabold text-primary">Período seleccionado</p>
         <h2 class="mt-2 text-2xl font-extrabold text-slate-900"><?= htmlspecialchars($period['nombre_per'] ?? '') ?></h2>
     </div>
     <div class="overflow-x-auto">

@@ -5,7 +5,7 @@ $evaluation = new CommunicationEvaluation();
 $activePeriod = $evaluation->getActiveAcademicPeriod();
 
 if (!$activePeriod) {
-    throw new RuntimeException('No existe un periodo lectivo activo.');
+    throw new RuntimeException('No existe un período lectivo activo.');
 }
 
 $evaluation->ensurePeriodConfigured((int) $activePeriod['serial_per']);
@@ -372,7 +372,7 @@ include __DIR__ . '/../templates/public_header.php';
         <div class="rounded-[2rem] border border-amber-200 bg-amber-50 px-6 py-5 text-amber-900">
             <p class="text-sm font-extrabold uppercase tracking-[0.18em]">Formulario en modo consulta</p>
             <p class="mt-2 text-sm leading-6">
-                La ventana del diagnóstico está cerrada para este periodo. Puede revisar las preguntas, pero el envío permanecerá bloqueado hasta que administración vuelva a habilitarlo.
+                La ventana del diagnóstico está cerrada para este período. Puede revisar las preguntas, pero el envío permanecerá bloqueado hasta que administración vuelva a habilitarlo.
             </p>
         </div>
         <?php endif; ?>
@@ -618,7 +618,7 @@ include __DIR__ . '/../templates/public_header.php';
                             </dl>
                         </div>
                         <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 text-slate-600">
-                            Revise que todas las preguntas obligatorias queden respondidas. Si el periodo está fuera de ventana, el formulario se mantiene visible pero no permitirá el envío.
+                            Revise que todas las preguntas obligatorias queden respondidas. Si el período está fuera de ventana, el formulario se mantiene visible pero no permitirá el envío.
                         </div>
                     </div>
                 </div>

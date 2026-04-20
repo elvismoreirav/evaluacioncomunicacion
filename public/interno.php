@@ -54,7 +54,7 @@ if (request_method_is('POST')) {
                         <img src="<?= INSTITUTION_LOGO ?>" alt="UECR" class="h-8 w-8 rounded-full">
                         <?= htmlspecialchars(INSTITUTION_NAME) ?>
                     </div>
-                    <h1 class="mt-6 text-5xl font-extrabold leading-tight text-slate-900">Ingreso del personal interno al diagnóstico.</h1>
+                    <h1 class="mt-6 text-5xl font-extrabold leading-tight text-slate-900">Ingreso del personal interno al diagnóstico</h1>
                     <p class="mt-5 text-lg text-slate-600">
                         Este enlace queda reservado para directivos y personal propio. El sistema identifica automáticamente al colaborador activo y abre su instrumento interno.
                     </p>
@@ -65,7 +65,7 @@ if (request_method_is('POST')) {
                         </div>
                         <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                             <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Periodo</p>
-                            <p class="mt-3 text-sm text-slate-700"><?= htmlspecialchars($activePeriod['nombre_per'] ?? 'Sin periodo activo') ?></p>
+                            <p class="mt-3 text-sm text-slate-700"><?= htmlspecialchars($activePeriod['nombre_per'] ?? 'Sin período activo') ?></p>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ $activeAcademicPeriod = $evaluation->getActiveAcademicPeriod();
 $selectedPeriodId = (int) ($_REQUEST['periodo'] ?? ($activeAcademicPeriod['serial_per'] ?? 0));
 
 if ($selectedPeriodId <= 0) {
-    throw new RuntimeException('No existe un periodo disponible.');
+    throw new RuntimeException('No existe un período disponible.');
 }
 
 if (request_method_is('POST')) {
@@ -55,7 +55,7 @@ include __DIR__ . '/../templates/admin_header.php';
         <p class="mt-3 text-slate-600">Los participantes internos se sincronizan desde nómina y los externos se registran manualmente.</p>
     </div>
     <form method="get" class="rounded-2xl bg-white border border-slate-200 shadow-sm px-4 py-3">
-        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Periodo</label>
+        <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Período</label>
         <div class="flex items-center gap-3">
             <select name="periodo" class="rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-primary focus:outline-none">
                 <?php foreach ($periods as $periodOption): ?>
@@ -144,11 +144,11 @@ include __DIR__ . '/../templates/admin_header.php';
         </div>
         <div>
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Organización</label>
-            <input type="text" name="organizacion_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+            <input type="text" name="organizacion_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Organización">
         </div>
         <div>
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Público o grupo</label>
-            <input type="text" name="publico_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+            <input type="text" name="publico_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Público o grupo">
         </div>
         <div>
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Correo</label>
@@ -156,7 +156,7 @@ include __DIR__ . '/../templates/admin_header.php';
         </div>
         <div>
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Teléfono</label>
-            <input type="text" name="telefono_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
+            <input type="text" name="telefono_par" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" placeholder="Teléfono">
         </div>
         <div>
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Estado</label>

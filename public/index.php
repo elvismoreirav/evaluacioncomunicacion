@@ -75,7 +75,7 @@ $windowClasses = $windowOpen
                         <div class="mt-8 grid gap-4 sm:grid-cols-3">
                             <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Periodo</p>
-                                <p class="mt-3 text-sm text-slate-700"><?= htmlspecialchars($activePeriod['nombre_per'] ?? 'Sin periodo activo') ?></p>
+                                <p class="mt-3 text-sm text-slate-700"><?= htmlspecialchars($activePeriod['nombre_per'] ?? 'Sin período activo') ?></p>
                             </div>
                             <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
                                 <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Estado</p>
