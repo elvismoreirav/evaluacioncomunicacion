@@ -65,8 +65,8 @@ define('DB_USER', config_value('DB_USER', 'EVALCOM_DB_USER', 'root'));
 define('DB_PASS', config_value('DB_PASS', 'EVALCOM_DB_PASS', '12345678'));
 define('DB_CHARSET', config_value('DB_CHARSET', 'EVALCOM_DB_CHARSET', 'utf8mb4'));
 
-define('APP_NAME', 'Sistema de Diagnostico de Comunicacion');
-define('APP_SHORT_NAME', 'Diagnostico Comunicacion UECR');
+define('APP_NAME', 'Sistema de Diagnóstico de Comunicación');
+define('APP_SHORT_NAME', 'Diagnóstico Comunicación UECR');
 define('APP_VERSION', '1.0.0');
 define('APP_BASE_PATH', $basePath);
 define('APP_URL', getenv('EVALCOM_APP_URL') ?: $detectedUrl);
@@ -82,7 +82,7 @@ define('SESSION_LIFETIME', 7200);
 
 define('ADMIN_USER', 'admin');
 define('ADMIN_PASS', 'admin123');
-define('ADMIN_DISPLAY', 'Administrador Diagnostico Comunicacion');
+define('ADMIN_DISPLAY', 'Administrador Diagnóstico Comunicación');
 
 define('MAIL_FROM', config_value('MAIL_FROM', 'EVALCOM_MAIL_FROM', 'notificacionesbecas@cristorey.edu.ec'));
 define('MAIL_FROM_NAME', config_value('MAIL_FROM_NAME', 'EVALCOM_MAIL_FROM_NAME', 'Unidad Educativa Particular Cristo Rey'));
