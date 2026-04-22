@@ -15,6 +15,8 @@ $dashboard = $evaluation->getEmployeeDashboard((int) $employeeUser['serial_epl']
 $period = $dashboard['periodo'];
 $instrument = $dashboard['instrumento'];
 $formHref = 'evaluacion.php?instrumento=' . urlencode((string) $instrument['codigo_ins']);
+$evaluationStatus = strtoupper((string) ($dashboard['evaluacion']['estado_eva'] ?? 'PENDIENTE'));
+$isSubmitted = in_array($evaluationStatus, ['ENVIADA', 'REVISADA', 'CERRADA'], true);
 
 $pageTitle = 'Panel del personal';
 $currentEmployee = $employeeUser;
@@ -64,8 +66,8 @@ include __DIR__ . '/../templates/public_header.php';
             <h2 class="mt-2 text-2xl font-extrabold text-slate-900"><?= htmlspecialchars($instrument['nombre_ins']) ?></h2>
             <p class="mt-3 text-slate-600"><?= htmlspecialchars($instrument['descripcion_ins'] ?? '') ?></p>
         </div>
-        <span class="inline-flex rounded-full px-3 py-1 text-xs font-bold <?= !empty($dashboard['evaluacion']['fecha_envio']) ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700' ?>">
-            <?= !empty($dashboard['evaluacion']['fecha_envio']) ? 'Enviado' : 'Pendiente' ?>
+        <span class="inline-flex rounded-full px-3 py-1 text-xs font-bold <?= $isSubmitted ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700' ?>">
+            <?= $isSubmitted ? 'Enviado' : 'Pendiente' ?>
         </span>
     </div>
 
@@ -77,7 +79,7 @@ include __DIR__ . '/../templates/public_header.php';
     <div class="mt-6">
         <?php if (!empty($dashboard['ventana_abierta'])): ?>
         <a href="<?= htmlspecialchars($formHref) ?>" class="inline-flex items-center justify-center rounded-2xl bg-primary px-6 py-3 font-extrabold text-white shadow-lg shadow-primary/30 transition hover:bg-primary/90">
-            <?= !empty($dashboard['evaluacion']['serial_eva']) ? 'Editar respuestas' : 'Iniciar cuestionario' ?>
+            <?= !empty($dashboard['evaluacion']['serial_eva']) ? ($isSubmitted ? 'Revisar respuestas enviadas' : 'Editar respuestas') : 'Iniciar cuestionario' ?>
         </a>
         <?php else: ?>
         <span class="inline-flex items-center justify-center rounded-2xl bg-gray-200 px-6 py-3 font-extrabold text-gray-500">

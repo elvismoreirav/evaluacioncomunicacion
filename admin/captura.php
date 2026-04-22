@@ -129,6 +129,8 @@ $instrument = $context['instrumento'];
 $participant = $context['participante'];
 $evaluationRow = $context['evaluacion'];
 $extraRows = $context['filas_extra'];
+$evaluationStatus = strtoupper((string) ($evaluationRow['estado_eva'] ?? 'BORRADOR'));
+$isSubmitted = in_array($evaluationStatus, ['ENVIADA', 'REVISADA', 'CERRADA'], true);
 ?>
 <div class="mb-6 rounded-[2rem] bg-slate-900 text-white p-6 shadow-xl">
     <div class="grid md:grid-cols-3 gap-4">
@@ -142,7 +144,7 @@ $extraRows = $context['filas_extra'];
         </div>
         <div>
             <p class="text-xs uppercase tracking-wide text-white/60 font-bold">Estado actual</p>
-            <p class="mt-1 text-lg font-extrabold"><?= htmlspecialchars($evaluationRow['estado_eva'] ?? 'BORRADOR') ?></p>
+            <p class="mt-1 text-lg font-extrabold"><?= htmlspecialchars($evaluationStatus) ?></p>
         </div>
     </div>
     <p class="mt-4 text-sm text-white/80">
@@ -240,6 +242,18 @@ $extraRows = $context['filas_extra'];
 
                 <?php elseif (($question['tipo_respuesta'] ?? '') === 'FECHA'): ?>
                 <input type="date" name="<?= htmlspecialchars($inputName) ?>" value="<?= htmlspecialchars((string) ($response['valor_fecha'] ?? '')) ?>" class="mt-4 w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" <?= ($question['es_obligatoria'] ?? 'SI') === 'SI' ? 'required' : '' ?>>
+
+                <?php elseif (($question['tipo_respuesta'] ?? '') === 'BOOLEANO'): ?>
+                <div class="mt-4 grid sm:grid-cols-2 gap-3">
+                    <?php foreach (['SI' => 'Sí', 'NO' => 'No'] as $value => $label): ?>
+                    <label class="relative">
+                        <input type="radio" name="<?= htmlspecialchars($inputName) ?>" value="<?= $value ?>" class="peer sr-only" <?= (string) ($response['valor_booleano'] ?? '') === $value ? 'checked' : '' ?> <?= ($question['es_obligatoria'] ?? 'SI') === 'SI' ? 'required' : '' ?>>
+                        <span class="flex h-full items-center rounded-2xl border-2 border-slate-200 px-4 py-4 text-sm font-bold text-slate-700 transition peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary">
+                            <?= htmlspecialchars($label) ?>
+                        </span>
+                    </label>
+                    <?php endforeach; ?>
+                </div>
                 <?php endif; ?>
 
                 <?php if (($question['permite_observacion'] ?? 'NO') === 'SI'): ?>
@@ -393,7 +407,7 @@ $extraRows = $context['filas_extra'];
         <textarea name="observacion_general" rows="4" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" placeholder="Notas finales del levantamiento"><?= htmlspecialchars($evaluationRow['observacion_general'] ?? '') ?></textarea>
         <div class="mt-6 flex flex-wrap gap-3">
             <button type="submit" class="inline-flex items-center justify-center rounded-2xl bg-primary px-6 py-3 text-white font-extrabold shadow-lg shadow-primary/30 hover:bg-primary/90 transition">
-                Guardar instrumento
+                <?= $isSubmitted ? 'Actualizar instrumento' : 'Guardar instrumento' ?>
             </button>
             <a href="resultados.php?periodo=<?= $selectedPeriodId ?>" class="inline-flex items-center justify-center rounded-2xl border border-slate-300 px-6 py-3 font-bold text-slate-700 hover:bg-slate-100 transition">
                 Volver

@@ -1227,7 +1227,7 @@ class CommunicationEvaluation
         switch ($type) {
             case 'TEXTO':
                 $text = $this->nullableText($value);
-                if ($text === null && !$isRequired) {
+                if ($text === null && !$isRequired && $observation === null) {
                     return null;
                 }
                 if ($text === null) {
@@ -1238,8 +1238,11 @@ class CommunicationEvaluation
 
             case 'NUMERICA_ESCALA':
                 $optionId = (int) $value;
-                if ($optionId <= 0 && !$isRequired) {
+                if ($optionId <= 0 && !$isRequired && $observation === null) {
                     return null;
+                }
+                if ($optionId <= 0) {
+                    throw new InvalidArgumentException('Seleccione una opción válida en la escala antes de continuar.');
                 }
                 $option = $this->getScaleOption($optionId);
                 if (!$option) {
@@ -1252,8 +1255,11 @@ class CommunicationEvaluation
 
             case 'UNICA_OPCION':
                 $selectedId = (int) $value;
-                if ($selectedId <= 0 && !$isRequired) {
+                if ($selectedId <= 0 && !$isRequired && $observation === null) {
                     return null;
+                }
+                if ($selectedId <= 0) {
+                    throw new InvalidArgumentException('Seleccione una opción válida antes de continuar.');
                 }
 
                 if (!empty($question['escala'])) {
@@ -1277,7 +1283,7 @@ class CommunicationEvaluation
 
             case 'MULTIPLE_OPCION':
                 $selected = is_array($value) ? array_filter(array_map('intval', $value)) : [];
-                if (empty($selected) && !$isRequired) {
+                if (empty($selected) && !$isRequired && $observation === null) {
                     return null;
                 }
                 if (empty($selected)) {
@@ -1296,7 +1302,7 @@ class CommunicationEvaluation
 
             case 'BOOLEANO':
                 $boolValue = strtoupper(trim((string) $value));
-                if ($boolValue === '' && !$isRequired) {
+                if ($boolValue === '' && !$isRequired && $observation === null) {
                     return null;
                 }
                 if (!in_array($boolValue, ['SI', 'NO'], true)) {
@@ -1308,10 +1314,10 @@ class CommunicationEvaluation
 
             case 'NUMERO':
                 if ($value === null || $value === '') {
-                    if ($isRequired) {
-                        throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluación.');
+                    if (!$isRequired && $observation === null) {
+                        return null;
                     }
-                    return null;
+                    throw new InvalidArgumentException('Complete las preguntas obligatorias antes de enviar la evaluación.');
                 }
                 if (!is_numeric((string) $value)) {
                     throw new InvalidArgumentException('Ingrese un valor numérico válido.');
@@ -1322,7 +1328,7 @@ class CommunicationEvaluation
 
             case 'FECHA':
                 $date = $this->normalizeDateInput($value);
-                if ($date === null && !$isRequired) {
+                if ($date === null && !$isRequired && $observation === null) {
                     return null;
                 }
                 if ($date === null) {
