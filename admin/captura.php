@@ -15,7 +15,8 @@ $evaluation->ensurePeriodConfigured($selectedPeriodId);
 $period = $evaluation->getConfiguredPeriod($selectedPeriodId);
 $periods = $evaluation->getAvailablePeriods();
 $instruments = $evaluation->getInstrumentCatalog();
-$selectedInstrumentId = (int) ($_REQUEST['instrumento'] ?? ($instruments[0]['serial_ins'] ?? 0));
+$defaultInstrument = $instruments[0] ?? [];
+$selectedInstrumentId = (int) ($_REQUEST['instrumento'] ?? ($defaultInstrument['serial_ins'] ?? 0));
 $selectedParticipantRaw = (string) ($_REQUEST['participante'] ?? '');
 $selectedParticipantId = $selectedParticipantRaw === '' ? null : (int) $selectedParticipantRaw;
 $selectedInstrument = $selectedInstrumentId > 0 ? $evaluation->getInstrumentById($selectedInstrumentId) : null;
@@ -93,7 +94,9 @@ include __DIR__ . '/../templates/admin_header.php';
             <label class="block text-xs uppercase tracking-wide font-bold text-slate-500 mb-2">Instrumento</label>
             <select name="instrumento" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none" onchange="this.form.submit()">
                 <?php foreach ($instruments as $instrument): ?>
-                <option value="<?= (int) $instrument['serial_ins'] ?>" <?= (int) $instrument['serial_ins'] === $selectedInstrumentId ? 'selected' : '' ?>>
+                <?php $instrumentId = (int) ($instrument['serial_ins'] ?? 0); ?>
+                <?php if ($instrumentId <= 0) { continue; } ?>
+                <option value="<?= $instrumentId ?>" <?= $instrumentId === $selectedInstrumentId ? 'selected' : '' ?>>
                     <?= htmlspecialchars($instrument['nombre_ins']) ?>
                 </option>
                 <?php endforeach; ?>

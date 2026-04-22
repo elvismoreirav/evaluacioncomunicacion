@@ -61,7 +61,9 @@ include __DIR__ . '/../templates/admin_header.php';
             <select name="instrumento" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-primary focus:outline-none">
                 <option value="">Todos</option>
                 <?php foreach ($instruments as $instrument): ?>
-                <option value="<?= (int) $instrument['serial_ins'] ?>" <?= (int) ($filters['instrumento'] ?? 0) === (int) $instrument['serial_ins'] ? 'selected' : '' ?>>
+                <?php $instrumentId = (int) ($instrument['serial_ins'] ?? 0); ?>
+                <?php if ($instrumentId <= 0) { continue; } ?>
+                <option value="<?= $instrumentId ?>" <?= (int) ($filters['instrumento'] ?? 0) === $instrumentId ? 'selected' : '' ?>>
                     <?= htmlspecialchars($instrument['nombre_ins']) ?>
                 </option>
                 <?php endforeach; ?>
