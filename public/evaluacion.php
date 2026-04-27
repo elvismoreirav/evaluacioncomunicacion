@@ -104,24 +104,12 @@ if ($isInternalAccess) {
         }
 
         try {
-            if ($participantData['nombres_par'] === '' || $participantData['apellidos_par'] === '') {
-                throw new InvalidArgumentException('Ingrese nombres y apellidos del participante.');
+            if ($participantData['email_par'] === '') {
+                throw new InvalidArgumentException('Ingrese el correo electrónico.');
             }
 
-            if ($participantData['genero_par'] === '') {
-                throw new InvalidArgumentException('Seleccione la identificación de género del participante.');
-            }
-
-            if ($participantData['cargo_par'] === '') {
-                throw new InvalidArgumentException('Ingrese el cargo, función o representación del participante.');
-            }
-
-            if ($participantData['organizacion_par'] === '') {
-                throw new InvalidArgumentException('Ingrese la organización, institución o colectivo del participante.');
-            }
-
-            if ($participantData['publico_par'] === '') {
-                throw new InvalidArgumentException('Ingrese el público o sector que representa.');
+            if (!filter_var($participantData['email_par'], FILTER_VALIDATE_EMAIL)) {
+                throw new InvalidArgumentException('Ingrese un correo electrónico válido.');
             }
 
             $createdParticipantId = 0;
@@ -129,14 +117,14 @@ if ($isInternalAccess) {
             try {
                 $createdParticipantId = $evaluation->saveParticipant([
                     'tipo_participante' => $participantType,
-                    'nombres_par' => $participantData['nombres_par'],
-                    'apellidos_par' => $participantData['apellidos_par'],
-                    'genero_par' => $participantData['genero_par'],
-                    'cargo_par' => $participantData['cargo_par'],
-                    'organizacion_par' => $participantData['organizacion_par'],
-                    'publico_par' => $participantData['publico_par'],
+                    'nombres_par' => 'Participante externo',
+                    'apellidos_par' => '',
+                    'genero_par' => '',
+                    'cargo_par' => '',
+                    'organizacion_par' => '',
+                    'publico_par' => '',
                     'email_par' => $participantData['email_par'],
-                    'telefono_par' => $participantData['telefono_par'],
+                    'telefono_par' => '',
                     'activo_par' => 'SI',
                 ]);
 
@@ -225,7 +213,7 @@ if ($isInternalAccess) {
         'meta' => 'Datos bloqueados',
     ];
 } else {
-    $participantRequiredFields = ['tipo_participante', 'nombres_par', 'apellidos_par', 'genero_par', 'cargo_par', 'organizacion_par', 'publico_par'];
+    $participantRequiredFields = ['email_par'];
     $participantCompletedFields = 0;
     foreach ($participantRequiredFields as $requiredField) {
         if (trim((string) ($participantData[$requiredField] ?? '')) !== '') {
@@ -235,9 +223,9 @@ if ($isInternalAccess) {
 
     $steps[] = [
         'kind' => 'participant',
-        'title' => 'Identificación del participante',
-        'description' => 'Necesitamos estos datos para contextualizar la respuesta y clasificar la participación.',
-        'meta' => $participantCompletedFields . '/' . count($participantRequiredFields) . ' campos listos',
+        'title' => 'Correo de contacto',
+        'description' => 'Ingrese únicamente el correo electrónico para registrar el formulario.',
+        'meta' => $participantCompletedFields . '/' . count($participantRequiredFields) . ' campo listo',
     ];
 }
 
@@ -423,55 +411,16 @@ include __DIR__ . '/../templates/public_header.php';
                     <?php endif; ?>
                 </div>
                 <?php elseif ($step['kind'] === 'participant'): ?>
-                <div class="grid gap-4 p-6 md:grid-cols-2 xl:grid-cols-3">
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Categoría</label>
-                        <select name="tipo_participante" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
-                            <option value="EXTERNO" <?= $participantType === 'EXTERNO' ? 'selected' : '' ?>>Externo</option>
-                            <option value="MIXTO" <?= $participantType === 'MIXTO' ? 'selected' : '' ?>>Mixto</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Nombres</label>
-                        <input type="text" name="nombres_par" value="<?= htmlspecialchars($participantData['nombres_par']) ?>" autocomplete="given-name" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
-                    </div>
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Apellidos</label>
-                        <input type="text" name="apellidos_par" value="<?= htmlspecialchars($participantData['apellidos_par']) ?>" autocomplete="family-name" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
-                    </div>
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Género</label>
-                        <select name="genero_par" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
-                            <option value="">Seleccione</option>
-                            <?php foreach (['MUJER' => 'Mujer', 'VARON' => 'Varón', 'NO_BINARIO' => 'No binario', 'OTRO' => 'Otro', 'PREFIERE_NO_DECIR' => 'Prefiere no decir'] as $value => $label): ?>
-                            <option value="<?= $value ?>" <?= $participantData['genero_par'] === $value ? 'selected' : '' ?>><?= htmlspecialchars($label) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Cargo o representación</label>
-                        <input type="text" name="cargo_par" value="<?= htmlspecialchars($participantData['cargo_par']) ?>" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
-                    </div>
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Organización o colectivo</label>
-                        <input type="text" name="organizacion_par" value="<?= htmlspecialchars($participantData['organizacion_par']) ?>" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
-                    </div>
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Público o sector representado</label>
-                        <input type="text" name="publico_par" value="<?= htmlspecialchars($participantData['publico_par']) ?>" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
-                    </div>
-                    <div>
+                <div class="grid gap-4 p-6 md:grid-cols-2">
+                    <input type="hidden" name="tipo_participante" value="EXTERNO">
+                    <div class="md:col-span-2">
                         <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Correo</label>
-                        <input type="email" name="email_par" value="<?= htmlspecialchars($participantData['email_par']) ?>" autocomplete="email" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500">Teléfono</label>
-                        <input type="text" name="telefono_par" value="<?= htmlspecialchars($participantData['telefono_par']) ?>" autocomplete="tel" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none">
+                        <input type="email" name="email_par" value="<?= htmlspecialchars($participantData['email_par']) ?>" autocomplete="email" class="w-full rounded-2xl border-2 border-slate-200 px-4 py-3 focus:border-primary focus:outline-none" required>
                     </div>
                 </div>
                 <div class="px-6 pb-6">
                     <div class="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-600">
-                        Estos datos solo se usan para clasificar la respuesta dentro del diagnóstico y contextualizar el análisis final.
+                        El correo se usa únicamente para registrar la respuesta del formulario externo.
                     </div>
                 </div>
                 <?php elseif ($step['kind'] === 'section'): ?>
